@@ -46,7 +46,7 @@ let btnConf = computed(() => {
     }
 })
 </script>
-<style lang="less">
+<style lang="scss">
 .zm-filter {
     &-small {
         .el-button {

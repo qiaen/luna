@@ -9,7 +9,7 @@ import { useStore } from 'vuex'
 let store = useStore()
 let isCollapse = computed(() => store.getters.isCollapse)
 </script>
-<style lang="less">
+<style lang="scss">
 // 默认菜单宽度
 .menus {
 	width: 215px;

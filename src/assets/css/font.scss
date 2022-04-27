@@ -1,0 +1,11 @@
+/*font-size*/
+.fbold {
+	font-weight: bold;
+}
+/** 生成形如 .fsize10 { font-size: 10px } */
+$sizes: (10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 22, 24);
+@each $size in $sizes {
+	.fsize#{$size} {
+		font-size: #{$size}px;
+	}
+}

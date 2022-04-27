@@ -20,7 +20,7 @@ defineProps({
 	}
 })
 </script>
-<style lang="less">
+<style lang="scss">
 .form-line {
 	span {
 		display: block;

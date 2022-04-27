@@ -1,0 +1,30 @@
+/* 间距 */
+.pad12 {
+	padding: 12px;
+}
+
+.plr15 {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+/** 常用间距，输出：
+ * .mt5 { margin-top: 5px } .mt10 { margin-top: 10px }等间距信息
+ */
+$spaces: (
+	mt: 'margin-top',
+	mr: 'margin-right',
+	mb: 'margin-bottom',
+	ml: 'margin-left',
+	pt: 'padding-top',
+	pr: 'padding-right',
+	pb: 'padding-bottom',
+	pl: 'padding-left'
+);
+$numbers: (5, 10, 12, 15, 20);
+@each $key, $type in $spaces {
+	@each $num in $numbers {
+		.#{$key}#{$num} {
+			#{$type}: #{$num}px;
+		}
+	}
+}

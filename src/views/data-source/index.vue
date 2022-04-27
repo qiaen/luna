@@ -74,8 +74,8 @@
 			class="pt10 txright"
 			@size-change="sizeChange"
 			@current-change="pageChange"
-			:current-page="pageInfo.pageNo"
-			:page-sizes="pageInfo.sizes"
+			v-model:currentPage="pageInfo.pageNo"
+			v-model:pageSizes="pageInfo.sizes"
 			:page-size="pageInfo.pageSize"
 			:layout="pageInfo.layout"
 			:total="pageInfo.total"
@@ -113,7 +113,7 @@ function get() {
 		xoading.value = false
 		if (res.code === 200) {
 			mainTable.value = res.data
-			pageInfo.total = res.total
+			pageInfo.total = res.data.length 
 		}
 	})
 }

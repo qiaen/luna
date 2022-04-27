@@ -44,7 +44,7 @@ let currentTab = computed(() => store.getters.currentTab.path)
 let defaultOpeneds = computed(() => store.getters.defaultOpeneds)
 let menus = computed(() => store.getters.menus)
 </script>
-<style lang="less">
+<style lang="scss">
 .menus {
 	background: #21325e;
 	.menu-logo {

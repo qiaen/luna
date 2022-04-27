@@ -36,16 +36,15 @@
 	margin-right: 4px;
 }
 // 作业列表+运维列表，状态key以及对应的颜色
-.status-enums() {
-	0: #555555;
-	1: #75cf49;
-	2: #ffbc38;
-	3: #f22735;
-	6: #17807e;
-}
-each(.status-enums(), .(@val, @key) {
-	.tag-status-@{key} {
-		background-color: @val;
+$status-enums: (
+	0: #555555,
+	1: #75cf49,
+	2: #ffbc38,
+	3: #f22735,
+	6: #17807e
+);
+@each $key, $value in $status-enums {
+    .#{'tag-status-' + $key} {
+		background-color: $value;
 	}
 }
-)

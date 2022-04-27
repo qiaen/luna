@@ -21,7 +21,7 @@ export default [
 				component: () => import('@/views/error/403.vue'),
 				meta: {
 					title: '403',
-					icon: 'el-icon-key'
+					icon: 'iconfont icon-zidongqingli'
 				}
 			},
 			{
@@ -31,7 +31,7 @@ export default [
 				component: () => import('@/views/error/404.vue'),
 				meta: {
 					title: '404',
-					icon: 'el-icon-key'
+					icon: 'iconfont icon-zuoyeyaoqiu'
 				}
 			}
 		]

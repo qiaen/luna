@@ -15,7 +15,7 @@
             <div class="middle">{{ userInfo.name || '' }}</div>
             <el-dropdown class="fxmiddle" @command="logout">
                 <span class="el-dropdown-link middle acc-avatar pointer">
-                    <img :src="userInfo.avatar" alt="头像" />
+                    <img :src="userInfo.avatar || '/img/dt-7.png'" alt="头像" />
                 </span>
                 <template #dropdown>
                     <el-dropdown-menu>
@@ -51,7 +51,7 @@ let breadcrumb: any = ref([])
 let isCollapse = computed(() => store.getters.isCollapse)
 let userInfo = computed(() => store.getters.userInfo)
 </script>
-<style lang="less">
+<style lang="scss">
 .layout-roof {
     .icon-zhankai {
         width: 46px;

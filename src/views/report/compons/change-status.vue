@@ -14,7 +14,7 @@
 					<p class="lineh16 fc999 fsize13">ii.相同状态不会重复修改</p>
 					<p class="lineh16 fc999 fsize13">iii.管理员帐号例外，将会被跳过</p>
 				</el-form-item>
-				<el-form-item label=" " class="txright">
+				<el-form-item class="txright">
 					<el-button @click="dialog.changeStatus = false">取 消</el-button>
 					<el-button @click="submit" type="primary" :icon="Finished">确定</el-button>
 				</el-form-item>
@@ -55,7 +55,7 @@ watch(
 	}
 )
 </script>
-<style lang="less">
+<style lang="scss">
 .task-status {
 	.el-form {
 		padding: 15px 8%;

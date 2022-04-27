@@ -6,6 +6,6 @@
 		</div>
 	</div>
 </template>
-<style lang="less">
-@import url("error.less");
+<style lang="scss">
+@import './error.scss';
 </style>

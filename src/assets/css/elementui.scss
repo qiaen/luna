@@ -1,29 +1,29 @@
 .zm-table {
 	// 在表格上设置height属性，可以定义内部滚动，注意每行不要高度不一，否则切换页面会照成对不齐
 	// 表头行样式
-	@th-height: 39px;
-	@td-height: 41px;
+	$th-height: 39px;
+	$td-height: 41px;
 	thead th {
 		background: #f9fafb;
 		color: #343a43;
-		height: @th-height;
-		padding: 0;
+		height: $th-height;
+		padding: 0!important;
 		font-size: 14px;
 		font-weight: 700;
 		.cell {
-			line-height: @th-height;
+			line-height: $th-height;
 			// 超出不换行
 			white-space: nowrap;
 		}
 	}
 	// 行样式
 	tbody td {
-		height: @td-height;
-		padding: 0;
+		height: $td-height;
+		padding: 0!important;
 		font-size: 13px;
 		color: #555;
 		.cell {
-			max-height: @td-height;
+			max-height: $td-height;
 		}
 	}
 	.el-table__cell {
@@ -122,7 +122,7 @@
 		background: #21325e;
 		padding: 12px 18px;
 		border-radius: 2px 2px 0 0;
-        margin-right: 0;
+		margin-right: 0;
 	}
 	.el-dialog__headerbtn {
 		top: 0;

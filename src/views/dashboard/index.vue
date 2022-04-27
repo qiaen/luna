@@ -12,7 +12,7 @@ onMounted(() => {
     console.log('hello, dashboard 2~~~')
 })
 </script>
-<style lang="less">
+<style lang="scss">
 .dashboard {
     img {
         width: 400px;

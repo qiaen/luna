@@ -31,7 +31,7 @@ import Tabs from './tabs.vue'
 let store = useStore()
 let cachedViews = computed(() => store.getters.cachedViews)
 </script>
-<style lang="less">
+<style lang="scss">
 // 页面切换中，隐藏抽屉
 .transiting {
 	.drawer-bg {

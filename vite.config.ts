@@ -3,6 +3,10 @@ import vue from '@vitejs/plugin-vue'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { fileURLToPath, URL } from 'url'
 import { defineConfig } from 'vite'
+/** 按需自动引入element-plus，使用前不需要导入（命令式除外），节省资源 */
+import ElementPlus from 'unplugin-element-plus/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 const base: any = {
 	isProd: process.env.NODE_ENV === 'production',
@@ -26,7 +30,16 @@ export default defineConfig({
 			}
 		}
 	},
-	plugins: [vue(), VueSetupExtend()],
+	plugins: [
+		vue(),
+		VueSetupExtend(),
+		ElementPlus({
+			useSource: true
+		}),
+		Components({
+			resolvers: [ElementPlusResolver()]
+		})
+	],
 	resolve: {
 		alias: {
 			'@': fileURLToPath(new URL('./src', import.meta.url))

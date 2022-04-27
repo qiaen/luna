@@ -156,7 +156,7 @@ function login() {
 }
 
 </script>
-<style lang="less">
+<style lang="scss">
 .login {
     .bg-box img {
         width: 110%;

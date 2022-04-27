@@ -68,7 +68,7 @@ function closeTabs(type: any) {
 }
 let currentTab = computed(() => store.getters.currentTab.path)
 </script>
-<style lang="less">
+<style lang="scss">
 .tabs {
 	.close-btn {
 		.el-dropdown-link {

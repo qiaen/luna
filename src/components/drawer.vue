@@ -40,7 +40,7 @@ function back() {
     emit('back', false)
 }
 </script>
-<style lang="less">
+<style lang="scss">
 .drawer-back {
     &:hover {
         color: #2c5cc5;
