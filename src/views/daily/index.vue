@@ -49,57 +49,12 @@
 				</el-select>
 				<div class="pl5 fxmiddle">{{ list }}</div>
 			</div>
-			<qia-table :data="tableData" ref="refGlp" custom-key-name="dataCreate">
-				<el-table-column type="selection" forbid></el-table-column>
-                <el-table-column label="自定义">
-                    <!-- <template slot="header"> <i class="el-icon-more"></i>自定义</template> -->
-                    <template #default="scope">
-                        {{ scope.row.name }}
-                    </template>
-                </el-table-column>
-                <el-table-column prop="age" label="年龄" width="80"> </el-table-column>
-                <el-table-column prop="date" label="日期" width="110"> </el-table-column>
-                <el-table-column prop="name" label="姓名"> </el-table-column>
-                <el-table-column prop="address" min-width="180" show-overflow-tooltip label="地址"> </el-table-column>
-                <el-table-column label="设置" min-width="90" forbid>
-                    <template #default="scope">
-                        {{ scope.row.age >= 18 ? '成年' : '少年' }}
-                    </template>
-                </el-table-column>
-			</qia-table>
 		</div>
 	</section>
 </template>
 <script lang="ts" setup>
-import { ref, Ref } from 'vue'
 import userQuery from './useQuery'
 let { username, list } = userQuery()
-let tableData: Ref<any[]> = ref([
-	{
-		date: '2016-05-02',
-		age: 12,
-		name: '张三',
-		address: '上海市普陀区金沙江路 1518 弄'
-	},
-	{
-		date: '2016-05-04',
-		age: 14,
-		name: '王小虎',
-		address: '上海市普陀区金沙江路 1517 弄'
-	},
-	{
-		date: '2016-05-01',
-		age: 21,
-		name: '李四',
-		address: '上海市普陀区金沙江路 1519 弄'
-	},
-	{
-		date: '2016-05-03',
-		age: 81,
-		name: '王文渊',
-		address: '上海市普陀区金沙江路 1516 弄'
-	}
-])
 </script>
 <style lang="scss">
 .json {
