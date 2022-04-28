@@ -1,3 +1,7 @@
+// 自定义颜色后这几个指令式方法样式失效，所以重新导入
+@use 'element-plus/theme-chalk/src/message.scss';
+@use 'element-plus/theme-chalk/src/message-box.scss';
+@use 'element-plus/theme-chalk/src/notification.scss';
 .zm-table {
 	// 在表格上设置height属性，可以定义内部滚动，注意每行不要高度不一，否则切换页面会照成对不齐
 	// 表头行样式
@@ -102,6 +106,9 @@
 			border-bottom-color: #666;
 		}
 	}
+}
+.el-table + .el-pagination.pt10 {
+    padding-top: 10px;
 }
 // 下拉菜单样式
 .el-dropdown {

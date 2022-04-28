@@ -1,11 +1,11 @@
-@import './flex.scss';
-@import './color.scss';
-@import './transition.scss';
-@import './elementui.scss';
-@import './scrollbar.scss';
-@import './font.scss';
-@import './space.scss';
-@import './tag.scss';
+@use './flex.scss';
+@use './color.scss';
+@use './transition.scss';
+@use './elementui.scss';
+@use './scrollbar.scss';
+@use './font.scss';
+@use './space.scss';
+@use './tag.scss';
 html,
 body {
 	color: #333;

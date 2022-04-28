@@ -7,5 +7,5 @@
 	</div>
 </template>
 <style lang="scss">
-@import './error.scss';
+@use './error.scss';
 </style>

@@ -1,0 +1,24 @@
+// 自定义配色，字体大小等，注意var内不要写样式，否则会造成重复打包，且影响热加载速度
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+	$colors: (
+		'primary': (
+			'base': #217ede
+		),
+		'success':
+		(
+			'base': #29b87a
+		),
+		'warning': (
+			'base': #fa8c16
+		),
+		'danger': (
+			'base': #f5222d
+		),
+		'error': (
+			'base': #cf1322
+		),
+		'info': (
+			'base': #909399
+		)
+	)
+);
