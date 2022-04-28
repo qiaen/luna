@@ -5,7 +5,7 @@
 		</sline>
 		<div class="pt20">
 			<el-button v-permission="17" type="success" @click="back">提 交</el-button>
-			<p class="fc999 fsize14 pt20">如果登录的是管理员，才可以看到上方的按钮，可以做大型的表单或者展示用</p>
+			<p class="fc999 fsize14 pt20">如果登录的是管理员，才可以看到上方的按钮</p>
 		</div>
 	</section>
 </template>
