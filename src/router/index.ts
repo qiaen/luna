@@ -7,7 +7,7 @@ import routes from './routes'
 import store from '../store/index'
 /** https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars */
 /** 这里限制性很高，只有路径为/views/文件夹name/*.vue，的文件才能被识别，如果不在这个结构，自己增加吧，然后再合并 */
-const modules = import.meta.glob('../views/*/*.vue');
+const modules = import.meta.glob('../views/*/*.vue')
 /** 免登陆可进入的页面(白名单) */
 const whiteList = ['/login', '/403', '/404']
 /** 全局加载 */
