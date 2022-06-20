@@ -65,8 +65,8 @@
 			<el-table-column prop="createTime" label="创建时间" min-width="160" sortable></el-table-column>
 			<el-table-column fixed="right" label="操作" width="125">
 				<template #default="scope">
-					<el-button @click="setCurrtRow(scope.row, 'edit')" type="text">编辑</el-button>
-					<el-button @click="setCurrtRow(scope.row, 'del')" type="text">删除</el-button>
+					<el-button @click="setCurrtRow(scope.row, 'edit')" type="success" link>编辑</el-button>
+					<el-button @click="setCurrtRow(scope.row, 'del')" type="warning" link>删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>

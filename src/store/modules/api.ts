@@ -19,7 +19,7 @@ const actions = {
 					}
 					return Promise.resolve(res)
 				})
-				.catch(err => {
+				.catch((err: any) => {
 					return Promise.reject(err)
 				})
 		}

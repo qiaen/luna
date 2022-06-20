@@ -9,7 +9,7 @@
             <slot name="auto"></slot>
         </span>
         <el-form-item>
-            <el-button class="filter-wrap" v-show="btnConf.show" @click="showall = !showall" type="text">
+            <el-button class="filter-wrap" v-show="btnConf.show" @click="showall = !showall" type="primary" link>
                 {{ btnConf.label }} 
                 <el-icon class="pl5"><component :is="btnConf.icon"></component></el-icon>
             </el-button>
