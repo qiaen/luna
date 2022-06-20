@@ -11,8 +11,6 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 const base: any = {
 	isProd: process.env.NODE_ENV === 'production',
-	/** 项目页面title */
-	name: '花木兰 - 后台管理系统',
 	/** 目标接口域名 */
 	target: 'https://mulan.diumx.com'
 }

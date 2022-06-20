@@ -5,6 +5,8 @@ import { ElLoading, ElMessage } from 'element-plus'
 import routes from './routes'
 /** 导入Vuex实例 */
 import store from '../store/index'
+/** 项目信息 */
+const title = import.meta.env.VITE_TITLE
 /** https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars */
 /** 这里限制性很高，只有路径为/views/文件夹name/*.vue，的文件才能被识别，如果不在这个结构，自己增加吧，然后再合并 */
 const modules = import.meta.glob('../views/*/*.vue')
@@ -108,7 +110,7 @@ router.afterEach((to: any) => {
 		path: to.path,
 		icon: to.meta?.icon
 	})
-	;(document as any).title = to.name ? `${to.name} - 花木兰` : '花木兰 - 后台管理系统模版Vue3+TS'
+	;(document as any).title = to.name ? `${to.name} - ${title}` : `${title} - 后台管理系统模版Vue3+TS`
 })
 /**  递归方法，写入路由信息 */
 function depthRoute(menus: any, routers: any) {
