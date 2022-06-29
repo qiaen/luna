@@ -13,10 +13,12 @@ interface Mx {
 	mainTable: Ref<any[]>
 	/** 表格被选中的信息数组 */
 	mainSelected: Ref<any[]>
+	/** 表格点击选中的信息对象 */
+	currtRow: Ref<{ [propsName:string]: any }>
 	/** 主表复选项变动 */
 	mainSelectionChange(values: []): void
 	/** 分页信息 */
-	pageInfo: any
+	pageInfo: PageInfo
 	/** 加载中 */
 	xoading: Ref<boolean>
 	/** 初始化函数，重置到第一页并请求 */
@@ -28,12 +30,15 @@ interface Mx {
 	/** 匹配枚举 返回label  this.matchEnum('PULL_INCRE_TYPE', 'day_all') */
 	matchEnum: Function
 }
+
 /** 混入常用变量和方法，如分页相关方法，加载中，主表等 */
 export default function (get: Function | void): Mx {
 	/** 主表格数据，用来存放list数据 */
 	let mainTable = ref([])
 	/** 批量选择 */
 	let mainSelected = ref([])
+	/** 当前选中行 */
+	let currtRow = ref({})
 	/** 主表复选项变动 */
 	function mainSelectionChange(rows: any) {
 		mainSelected.value = rows
@@ -89,6 +94,7 @@ export default function (get: Function | void): Mx {
 	return {
 		mainTable,
 		mainSelected,
+		currtRow,
 		mainSelectionChange,
 		pageInfo,
 		sizeChange,

@@ -9,26 +9,21 @@ function mockUser() {
 			resolve([
 				{
 					name: 'Micle',
-					age: 18
+					age: 18,
+					favorites: [
+						{ id:2, name: 'draw' }
+					]
 				},
 				{
 					name: 'Lili',
-					age: 20
-				},
-				{
-					name: 'Cissy',
-					age: 9
-				},
-				{
-					name: 'Milk',
-					age: 10
-				},
-				{
-					name: 'Lucc',
-					age: 11
+					age: 20,
+					favorites: [
+						{ id:1, name: 'football' },
+						{ id:2, name: 'draw' }
+					]
 				}
 			])
-		}, 500)
+		}, 16)
 	})
 }
 export default function (): UserQuery {

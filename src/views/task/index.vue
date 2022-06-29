@@ -5,7 +5,7 @@
 			<el-button @click="dialog = true" type="primary">打开盒子</el-button>
 		</div>
 		<!-- 作业查看，编辑，新增 -->
-		<drawer v-model="dialog" @back="backEditTask" title="测试抽屉组件">
+		<drawer v-model="dialog" @back="backEditTask" title="作业登记">
 			<template #left>
 				<checkin cite="true" @back="backEditTask"></checkin>
 			</template>

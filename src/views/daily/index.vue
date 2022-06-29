@@ -21,6 +21,7 @@
 			</ul>
 			<h3>花木兰模版</h3>
 			<ul>
+				<li><strong>特色：</strong>element ui自动化动态导入，setup语法糖支持name</li>
 				<li><strong>动态菜单：</strong>在服务端配置菜单路由，以及菜单指定的页面文件</li>
 				<li><strong>菜单权限：</strong>可以给不同用户指定不同的菜单，菜单权限，使用路由守卫在跳转时校验权限提示404或者403</li>
 				<li><strong>按钮权限：</strong>服务器对于不同的功能，给出不同的权限码，前端通过v-permission指令搞定是否有权限</li>
@@ -41,20 +42,10 @@
 			<ul>
 				<li><strong>request：</strong>echarts图表，vue-split分割等可以自助引用，做到只专注模版框架功能</li>
 			</ul>
-			<h3>好用的功能1</h3>
-			<div class="flex">
-				<el-select v-model="username">
-					<el-option value="Micle">Micle</el-option>
-					<el-option value="Lili">Lili</el-option>
-				</el-select>
-				<div class="pl5 fxmiddle">{{ list }}</div>
-			</div>
 		</div>
 	</section>
 </template>
-<script lang="ts" setup>
-import userQuery from './useQuery'
-let { username, list } = userQuery()
+<script lang="ts">
 </script>
 <style lang="scss">
 .json {
@@ -87,7 +78,7 @@ let { username, list } = userQuery()
 		margin: 0 0 30px;
 		color: #1f2d3d;
 	}
-	.scroll-y>ul {
+	.scroll-y > ul {
 		margin-bottom: 50px;
 		padding-left: 0;
 		li {

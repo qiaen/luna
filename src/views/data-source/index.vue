@@ -38,7 +38,7 @@
 			<template #button>
 				<el-button type="primary" @click="init" :loading="xoading" :icon="Search">查询</el-button>
 				<el-button type="primary" @click="dialog = true" :icon="CirclePlus">新增</el-button>
-				<el-button :disabled="mainSelected.length < 1" type="primary" :icon="Brush">状态修改</el-button>
+				<el-button :disabled="mainSelected.length < 1" @click="batchDel" type="primary" :icon="Brush">批量删除</el-button>
 			</template>
 		</filters>
 		<el-table class="zm-table" @selection-change="mainSelectionChange" height="100%" v-loading="xoading" :data="mainTable" border>
@@ -81,7 +81,7 @@
 			:total="pageInfo.total"
 		></el-pagination>
 		<!-- 作业查看，编辑，新增 -->
-		<drawer v-model="dialog" @back="backEditTask" title="测试抽屉组件">
+		<drawer v-model="dialog" @back="backEditTask" :title="currtRow.name">
 			<template #left>
 				<checkin cite="true" @back="backEditTask"></checkin>
 			</template>
@@ -96,13 +96,14 @@ import * as Users from '@/api/Users'
 import Mixins from '@/utils/Mixins'
 /** 动态异步导入抽屉的内容 */
 const checkin = defineAsyncComponent(() => import('../task/checkin.vue'))
-const { xoading, mainTable, pageInfo, init, matchEnum, sizeChange, pageChange, mainSelected, mainSelectionChange, serviceEnum } = Mixins(get)
+const { xoading, mainTable, pageInfo, init, matchEnum, sizeChange, pageChange, mainSelected, mainSelectionChange, serviceEnum, currtRow } = Mixins(get)
 let params = reactive({
 	status: '',
 	userStatus: '',
 	date: [],
 	name: ''
 })
+
 function get() {
 	xoading.value = true
 	Users.getList({
@@ -135,12 +136,17 @@ function backEditTask(val: boolean) {
 		ElMessage('你已返回到列表～～')
 	}
 }
+/** 点击编辑、删除 */
 function setCurrtRow(row: any, type: string) {
 	if (type === 'edit') {
+		currtRow.value = row
 		dialog.value = true
 	} else {
-		ElMessage.success('模拟删除操作！')
+		ElMessage.success(`${row.name}已删除！`)
 	}
+}
+function batchDel() {
+	ElMessage.success(`已删除${mainSelected.value.map(item => item.name).join('、')}等${mainSelected.value.length}个用户！`)
 }
 /** 抽屉相关 结束 */
 </script>
