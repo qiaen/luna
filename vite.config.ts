@@ -1,4 +1,5 @@
 import vue from '@vitejs/plugin-vue'
+import importToCDN from 'vite-plugin-cdn-import'
 import { fileURLToPath, URL } from 'url'
 import { defineConfig } from 'vite'
 /** 按需自动引入element-plus，使用前不需要导入（命令式除外），节省资源
@@ -44,6 +45,25 @@ export default defineConfig({
 	},
 	plugins: [
 		vue(),
+		importToCDN({
+			modules: [
+				{
+					name: 'vue',
+					var: 'Vue',
+					path: `https://cdn.bootcdn.net/ajax/libs/vue/3.2.33/vue.global.prod.js`,
+				},
+				{
+					name: 'vuex',
+					var: 'Vuex',
+					path: `https://cdn.bootcdn.net/ajax/libs/vuex/4.0.2/vuex.global.prod.min.js`,
+				},
+				{
+					name: 'vue-router',
+					var: 'VueRouter',
+					path: `https://cdn.bootcdn.net/ajax/libs/vuex/4.0.2/vuex.global.prod.min.js`,
+				}
+			],
+		}),
 		Components({
 			resolvers: [
 				ElementPlusResolver({
