@@ -10,11 +10,12 @@
   "dependencies": {
     "@element-plus/icons-vue": "^1.1.4",
     "element-plus": "^2.1.11",
+    "pinia": "^2.0.14",
     "vue": "^3.2.33",
-    "vue-router": "^4.0.14",
-    "vuex": "^4.0.2"
+    "vue-router": "^4.0.14"
   },
   "devDependencies": {
+    "vue-demi": "0.13.1",
     "@types/node": "^16.11.27",
     "@vitejs/plugin-vue": "^2.3.1",
     "@vue/tsconfig": "^0.1.3",

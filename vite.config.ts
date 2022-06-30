@@ -1,5 +1,5 @@
 import vue from '@vitejs/plugin-vue'
-import importToCDN from 'vite-plugin-cdn-import'
+// import importToCDN from 'vite-plugin-cdn-import'
 import { fileURLToPath, URL } from 'url'
 import { defineConfig } from 'vite'
 /** 按需自动引入element-plus，使用前不需要导入（命令式除外），节省资源
@@ -45,32 +45,48 @@ export default defineConfig({
 	},
 	plugins: [
 		vue(),
-		importToCDN({
-			modules: [
-				{
-					name: 'vue',
-					var: 'Vue',
-					path: `https://cdn.bootcdn.net/ajax/libs/vue/3.2.33/vue.global.prod.js`,
-				},
-				{
-					name: 'vuex',
-					var: 'Vuex',
-					path: `https://cdn.bootcdn.net/ajax/libs/vuex/4.0.2/vuex.global.prod.min.js`,
-				},
-				{
-					name: 'vue-router',
-					var: 'VueRouter',
-					path: `https://cdn.bootcdn.net/ajax/libs/vuex/4.0.2/vuex.global.prod.min.js`,
-				}
-			],
-		}),
+		VueSetupExtend(),
+		// importToCDN({
+		// 	modules: [
+		// 		{
+		// 			name: 'vue',
+		// 			var: 'Vue',
+		// 			path: `https://cdn.bootcdn.net/ajax/libs/vue/3.2.33/vue.global.prod.js`,
+		// 		},
+		// 		{
+        //             name: 'vue-demi',
+        //             var: 'VueDemi',
+        //             path: "https://cdn.bootcdn.net/ajax/libs/vue-demi/0.13.1/index.iife.min.js",
+        //         },
+		// 		// {
+        //         //     name: 'element-plus',
+        //         //     var: 'ElementPlus',
+        //         //     path: 'https://cdn.bootcdn.net/ajax/libs/element-plus/2.2.6/index.full.min.js',
+        //         //     css: 'https://cdn.bootcdn.net/ajax/libs/element-plus/2.2.6/theme-chalk/index.min.css',
+        //         // },
+        //         // {
+        //         //     name: 'pinia',
+        //         //     var: 'Pinia',
+        //         //     path: 'dist/pinia.iife.min.js'
+        //         // },
+		// 		{
+		// 			name: 'vuex',
+		// 			var: 'Vuex',
+		// 			path: `https://cdn.bootcdn.net/ajax/libs/vuex/4.0.2/vuex.global.prod.min.js`,
+		// 		},
+		// 		{
+		// 			name: 'vue-router',
+		// 			var: 'VueRouter',
+		// 			path: `https://cdn.bootcdn.net/ajax/libs/vue-router/4.0.14/vue-router.global.prod.min.js`,
+		// 		}
+		// 	],
+		// }),
 		Components({
 			resolvers: [
 				ElementPlusResolver({
 					importStyle: 'sass'
 				})
 			]
-		}),
-		VueSetupExtend()
+		})
 	]
 })
