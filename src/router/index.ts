@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { ElLoading } from 'element-plus'
+
 /** 静态菜单列表 */
 import routes from './routes'
+import{ depthRoute } from './func'
 /** 导入Pinia实例 */
 import Store from '@/store'
 const { useApi, useLayout } = Store
 
 /** 项目信息 */
 const title = import.meta.env.VITE_TITLE
-/** https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars */
-/** 这里限制性很高，只有路径为/views/文件夹name/*.vue，的文件才能被识别，如果不在这个结构，自己增加吧，然后再合并 */
-const modules = import.meta.glob('../views/*/*.vue')
+
 /** 免登陆可进入的页面(白名单) */
 const whiteList = ['/login', '/403', '/404']
 /** 全局加载 */
@@ -38,47 +38,37 @@ router.beforeEach(async (to, from) => {
 		if (wins.needAuth) {
 			loading = loadingFun()
 			console.log('verify the login information at initialization')
-			let menus: any = []
+			
 			const api = useApi()
 			const layout = useLayout()
 			/** 接口返回的用户信息 开始 */
 			let resUser = await api.GetUserInfo()
-			if (resUser.code === 200) {
+			if (resUser && resUser.code === 200) {
 				wins.needAuth = false
-				let { data } = resUser
-				menus = data.menus
+				let { data: { menus, position, permission } } = resUser
 				/** 放在window下其实不安全，最好放到vuex里 */
-				wins.userPosition = data.position
-				wins.permission = data.permission
-			}
-
-			// 需要登录，即获取用户信息时失败
-			if (wins.needAuth) {
+				wins.userPosition = position
+				wins.permission = permission
+				/**  递归路由 */
+				let temp = depthRoute(menus, [])
+				routes[0].children = [...temp, ...(routes[0].children as any)]
+				/** 添加（重写）动态路由 */
+				await router.addRoute(routes[0])
+				/** 生成菜单，排除不需要显示的菜单 */
+				layout.SetMenus(menus.filter((item: any) => !item.hideInmenu))
+				/** 用户已经登录，在这里可以继续异步做登录后的事情，比如获取全局枚举等 */
+				await api.GetAllEnum()
 				loading.close()
+				loading = null
+				return { path: to.path }
+			} else {
+				// 需要登录，即获取用户信息时失败
+				loading.close()
+				loading = null
 				return {
 					path: '/login'
 				}
-			} else {
-				/** 用户已经登录，在这里可以继续异步做登录后的事情，比如获取全局枚举等 */
-				await api.GetAllEnum()
 			}
-
-			/**  递归路由 */
-			let temp = depthRoute(menus, [])
-			routes[0].children = [...temp, ...(routes[0].children as any)]
-			/** 添加（重写）动态路由 */
-			await router.addRoute(routes[0])
-			/** 生成菜单，排除不需要显示的菜单 */
-			layout.SetMenus(menus.filter((item: any) => !item.hideInmenu))
-			wins.needAuth = false
-
-			/** 注意：这里如果直接runturn to，会提示404，迷惑行为，待考察 */
-			loading.close()
-			// 清除全局等待函数
-			loading = null
-			return { path: to.path }
-		} else {
-			// 不需要登录，直接进入下一步，在vue-router3中，可以return true也可以不做任何操作默认进入下一个路由
 		}
 	}
 })
@@ -93,26 +83,5 @@ router.afterEach((to: any) => {
 	})
 	;(document as any).title = to.name ? `${to.name} - ${title}` : `${title} - 后台管理系统模版Vue3+TS`
 })
-/**  递归方法，写入路由信息 */
-function depthRoute(menus: any, routers: any) {
-	menus.forEach((menu: any) => {
-		if (menu.child && menu.child.length) {
-			depthRoute(menu.child, routers)
-		} else {
-			routers.push({
-				path: menu.path.substring(1),
-				name: menu.name,
-				// component: () => import(`../views${menu.file}`),
-				component: modules[`../views${menu.file}`],
-				meta: {
-					role: menu.role,
-					alive: menu.alive || false,
-					title: menu.name,
-					icon: menu.icon
-				}
-			})
-		}
-	})
-	return routers
-}
+
 export default router
