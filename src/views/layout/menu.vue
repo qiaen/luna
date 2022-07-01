@@ -10,7 +10,7 @@
 			</a>
 		</div>
 		<!-- 菜单列表，默认不折叠，当前选中 在store common内配置 -->
-		<el-menu :default-openeds="defaultOpeneds" :default-active="currentTab" background-color="#21325e" text-color="#fff" active-text-color="#fff" :collapse="isCollapse" :collapse-transition="false" :router="true">
+		<el-menu :default-openeds="defaultOpeneds" :default-active="currentTab.path" background-color="#21325e" text-color="#fff" active-text-color="#fff" :collapse="isCollapse" :collapse-transition="false" :router="true">
 			<template v-for="item in menus">
 				<el-sub-menu :key="item.name" v-if="item.child && item.child.length" :index="item.path">
 					<template #title>
@@ -36,13 +36,11 @@
 	</menu>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
-let store = useStore()
-let isCollapse = computed(() => store.getters.isCollapse)
-let currentTab = computed(() => store.getters.currentTab.path)
-let defaultOpeneds = computed(() => store.getters.defaultOpeneds)
-let menus = computed(() => store.getters.menus)
+import Store from '@/store'
+const { storeToRefs, useLayout } = Store
+let layout = useLayout()
+
+let { isCollapse, menus, defaultOpeneds, currentTab } = storeToRefs(layout)
 </script>
 <style lang="scss">
 .menus {

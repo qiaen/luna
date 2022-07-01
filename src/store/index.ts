@@ -1,13 +1,8 @@
-import { createStore } from 'vuex'
-import layout from './modules/layout'
-import api from './modules/api'
-import getters from './getter'
-const store = createStore({
-	modules: {
-		layout,
-		api
-	},
-	getters
-})
-
-export default store
+import { storeToRefs } from 'pinia'
+import { useApi } from './modules/api'
+import { useLayout } from './modules/layout'
+export default {
+    storeToRefs,
+    useApi,
+    useLayout
+}

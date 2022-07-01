@@ -92,10 +92,10 @@ import { ElMessage, ElNotification } from 'element-plus'
 import { useRouter } from "vue-router"
 import * as Account from '@/api/Account'
 import Storage from '@/utils/Storage'
-import { useStore } from 'vuex'
+import Store from '@/store'
+const { useLayout } = Store
 /** 路由 */
 let router = useRouter()
-let store = useStore()
 let form = reactive({
     email: 'admin@qq.com',
     password: '123456',
@@ -134,14 +134,14 @@ function login() {
                 ElMessage.success('登录成功！')
                 Storage.set('token', res.data)
                 /** 关闭login页面 */
-                store.dispatch('layout/RemoveTab', { path: '/login' }).then(() => {
+                useLayout().RemoveTab({ path: '/login' }).then(() => {
                     /** 跳转到首页 */
                     router.replace('/')
                 })
             } else {
                 ElMessage.error(res.message || '登陆有误，请打开控制台查看错误信息')
             }
-        }).catch(err => {
+        }).catch((err: any) => {
             console.log(err)
             ElMessage.error(err)
         })

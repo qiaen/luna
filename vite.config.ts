@@ -52,5 +52,8 @@ export default defineConfig({
 			]
 		}),
 		VueSetupExtend()
-	]
+	],
+	build: {
+		minify: 'terser'
+	}
 })

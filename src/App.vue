@@ -4,10 +4,9 @@
 	</div>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
-let store = useStore()
-let isCollapse = computed(() => store.getters.isCollapse)
+import Store from '@/store'
+const { storeToRefs, useLayout } = Store
+let { isCollapse } = storeToRefs(useLayout())
 </script>
 <style lang="scss">
 // 默认菜单宽度

@@ -23,13 +23,12 @@
 	</div>
 </template>
 <script lang="ts" setup>
-import { computed } from '@vue/reactivity'
-import { useStore } from 'vuex'
 import Menus from './menu.vue'
 import Roof from './roof.vue'
 import Tabs from './tabs.vue'
-let store = useStore()
-let cachedViews = computed(() => store.getters.cachedViews)
+import Store from '@/store'
+const { storeToRefs, useLayout } = Store
+let cachedViews = storeToRefs(useLayout()).cachedViews
 </script>
 <style lang="scss">
 // 页面切换中，隐藏抽屉

@@ -2,7 +2,7 @@
 	<div class="flex tabs shrink0">
 		<!-- 主tab -->
 		<div class="flex1 hideit">
-			<el-tabs @tab-click="selectTab" @tab-remove="removeTab" :model-value="currentTab" type="card" closable>
+			<el-tabs @tab-click="selectTab" @tab-remove="removeTab" :model-value="currentTab.path" type="card" closable>
 				<el-tab-pane :key="item.path" v-for="item in menuTabs" :label="item.label" :name="item.path">
 					<template #label>
 						<span class="pointer center">
@@ -31,20 +31,21 @@
 	</div>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
+import Store from '@/store'
 import { useRoute, useRouter } from 'vue-router'
-let route = useRoute()
+const { storeToRefs, useLayout } = Store
+let layout = useLayout()
 let router = useRouter()
-let store = useStore()
-let menuTabs: any = computed(() => store.getters.menuTabs)
+let route = useRoute()
+let { menuTabs, currentTab } = storeToRefs(layout)
+
 /** 选中tab跳转页面 */
 function selectTab(tab: any) {
 	router.push(tab.paneName)
 }
 /** 删除tab，涉及到跳转 */
 function removeTab(path?: any) {
-	store.dispatch('layout/RemoveTab', { path }).then(() => {
+	layout.RemoveTab({ path }).then(() => {
 		// 删除tab成功后，如果删除的是当前查看的，就回到首页
 		if (path === route.path) {
 			/** menuTabs的数量，有就回到最后一个，否则回到主页 */
@@ -59,14 +60,13 @@ function removeTab(path?: any) {
 }
 /** 根据类型关闭tab */
 function closeTabs(type: any) {
-	store.dispatch('layout/CloseTabs', type).then(() => {
+	layout.CloseTabs(type).then(() => {
 		// 删除tab成功后，如果删除的是当前查看的，就回到首页
 		if (type === 'all') {
 			selectTab({ paneName: '/' })
 		}
 	})
 }
-let currentTab = computed(() => store.getters.currentTab.path)
 </script>
 <style lang="scss">
 .tabs {

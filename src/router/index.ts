@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { ElLoading, ElMessage } from 'element-plus'
-
+import { ElLoading } from 'element-plus'
 /** 静态菜单列表 */
 import routes from './routes'
-/** 导入Vuex实例 */
-import store from '../store/index'
+/** 导入Pinia实例 */
+import Store from '@/store'
+const { useApi, useLayout } = Store
+
 /** 项目信息 */
 const title = import.meta.env.VITE_TITLE
 /** https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars */
@@ -38,18 +39,19 @@ router.beforeEach(async (to, from) => {
 			loading = loadingFun()
 			console.log('verify the login information at initialization')
 			let menus: any = []
-			await store
-				.dispatch('api/GetUserInfo')
-				.then(res => {
-					if (res.code == 200) {
-						wins.needAuth = false
-						menus = res.data.menus
-						/** 放在window下其实不安全，最好放到vuex里 */
-						wins.userPosition = res.data.position
-						wins.permission = res.data.permission
-					}
-				})
-				.catch(() => {})
+			const api = useApi()
+			const layout = useLayout()
+			/** 接口返回的用户信息 开始 */
+			let resUser = await api.GetUserInfo()
+			if (resUser.code === 200) {
+				wins.needAuth = false
+				let { data } = resUser
+				menus = data.menus
+				/** 放在window下其实不安全，最好放到vuex里 */
+				wins.userPosition = data.position
+				wins.permission = data.permission
+			}
+
 			// 需要登录，即获取用户信息时失败
 			if (wins.needAuth) {
 				loading.close()
@@ -58,26 +60,7 @@ router.beforeEach(async (to, from) => {
 				}
 			} else {
 				/** 用户已经登录，在这里可以继续异步做登录后的事情，比如获取全局枚举等 */
-				await store
-					.dispatch('api/GetAllEnum')
-					.then(res => {
-						if (res.code !== 200) {
-							ElMessage({
-								type: 'error',
-								duration: 0,
-								showClose: true,
-								message: `获取全局枚举信息失败！`
-							})
-						}
-					})
-					.catch(err => {
-						ElMessage({
-							type: 'error',
-							duration: 0,
-							showClose: true,
-							message: `获取全局枚举信息失败！`
-						})
-					})
+				await api.GetAllEnum()
 			}
 
 			/**  递归路由 */
@@ -86,10 +69,7 @@ router.beforeEach(async (to, from) => {
 			/** 添加（重写）动态路由 */
 			await router.addRoute(routes[0])
 			/** 生成菜单，排除不需要显示的菜单 */
-			store.dispatch(
-				'layout/SetMenus',
-				menus.filter((item: any) => !item.hideInmenu)
-			)
+			layout.SetMenus(menus.filter((item: any) => !item.hideInmenu))
 			wins.needAuth = false
 
 			/** 注意：这里如果直接runturn to，会提示404，迷惑行为，待考察 */
@@ -105,7 +85,8 @@ router.beforeEach(async (to, from) => {
 /** 每次路由变动后：可以做页面分析等 */
 router.afterEach((to: any) => {
 	// 切换选中的tab，请查看layout/tabs.vue
-	store.dispatch('layout/SetCurrentTab', {
+	const layout = useLayout()
+	layout.SetCurrentTab({
 		label: to.name,
 		path: to.path,
 		icon: to.meta?.icon

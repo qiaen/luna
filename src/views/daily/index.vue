@@ -32,11 +32,11 @@
 				<li><strong>request：</strong>axios配置中，统一对request添加前置参数等</li>
 				<li><strong>response：</strong>对错误信息统一过滤，若未登录，直接跳转登录页</li>
 			</ul>
-			<h3>Vuex，keep-alive，useMixins</h3>
+			<h3>Pinia，keep-alive，useMixins</h3>
 			<ul>
-				<li><strong>状态管理：</strong>使用Vuex，关键字mapGetters，this.$store.dispatch等</li>
+				<li><strong>状态管理：</strong>尝试使用Pinia</li>
 				<li><strong>keep-alive：</strong>可对历史记录做现场保留，避免回退重新加载，减少接口调用，关键字keep-alive :include</li>
-				<li><strong>useMixins：</strong>重复，使用量大的data，methods等采用minins混入，直接使用，避免重复定义</li>
+				<li><strong>useMixins：</strong>重复，使用量大的data，methods等采用mixins混入，直接使用，避免重复定义</li>
 			</ul>
 			<h3>其他功能</h3>
 			<ul>

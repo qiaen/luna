@@ -49,7 +49,7 @@
 			<el-table-column prop="jobBu" label="业务方" width="100" sortable></el-table-column>
 			<el-table-column prop="createTime" label="创建时间" width="160" sortable></el-table-column>
 			<el-table-column prop="updateTime" label="更新时间" width="160" sortable></el-table-column>
-			<el-table-column fixed="right" label="操作" width="130">
+			<el-table-column fixed="right" label="操作" width="136">
 				<template #default="scope">
 					<el-button @click="setCurrtRow(scope.row, 'details')" type="success" link>查看</el-button>
 					<el-button @click="setCurrtRow(scope.row, 'status')" type="primary" link>更改状态</el-button>
