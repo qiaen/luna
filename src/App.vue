@@ -1,10 +1,13 @@
 <template>
 	<div class="full-content hideit" :class="{ 'full-collapse': isCollapse }">
-		<router-view />
+		<el-config-provider :locale="zhCn">
+			<router-view />
+		</el-config-provider>
 	</div>
 </template>
 <script lang="ts" setup>
 import Store from '@/store'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 const { storeToRefs, useLayout } = Store
 let { isCollapse } = storeToRefs(useLayout())
 </script>

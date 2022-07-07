@@ -19,8 +19,8 @@
 				</span>
 				<template #dropdown>
 					<el-dropdown-menu>
-						<el-dropdown-item command="a" icon="el-icon-switch-button">
-							<span @click="logout()">退出登录</span>
+						<el-dropdown-item command="a" class="iconfont icon-zidongqingli">
+							<span @click="logout()"> 退出登录</span>
 						</el-dropdown-item>
 					</el-dropdown-menu>
 				</template>

@@ -32,20 +32,14 @@ export const useLayout = defineStore('layout', () => {
 		let currt = menuTabs.value.find((item: any) => {
 			return item.path === tab.path
 		})
-		// console.log(state, tab)
-		// if(tab.path === '/work-order/list' || tab.path === '/work-order/form') return;
-		if (currt) {
-			// tabs内存在要打开的tab
-			currentTab.value = currt
-		} else {
-			// 不存在则添加新的
+		if (!currt) {
 			menuTabs.value.push(tab)
-			currentTab.value = tab
 			// 在要缓存的页面列表添加当前path，
 			// keep-alive识别的是组件名称而非路由名称，页面缓存异常请检查页面name是否重复或未与对应的路由一致
 			// 所以如果想要启用缓存只需要讲页面组件的name改成和路由地址不一致即可，相反一致的话会被缓存
 			cachedViews.value.push(tab.path)
 		}
+		currentTab.value = tab
 		// 如果菜单未折叠，匹配menus拿到要展开的菜单
 		if (isCollapse.value) {
 			for (let item of menus.value) {
@@ -65,19 +59,9 @@ export const useLayout = defineStore('layout', () => {
 			return Promise.reject('tabs只有一个时不能删除/')
 		}
 		// 在已打开的tabs中删除
-		for (let [index, item] of menuTabs.value.entries()) {
-			if (item.path === tab.path) {
-				menuTabs.value.splice(index, 1)
-				if (tab.path === currentTab.value.path) {
-					break
-				}
-			}
-		}
+		menuTabs.value = menuTabs.value.filter(item => item.path !== tab.path)
 		// 在缓存的页面中删除
-		let index = cachedViews.value.indexOf(tab.path)
-		if (index > -1) {
-			cachedViews.value.splice(index, 1)
-		}
+		cachedViews.value = menuTabs.value.map(item => item.path)
 		return Promise.resolve()
 	}
 	/** 关闭所有，关闭其他tabs */
@@ -87,7 +71,7 @@ export const useLayout = defineStore('layout', () => {
 			cachedViews.value = []
 		}
 		if (type === 'others') {
-			menuTabs.value = menuTabs.value.filter((item: any) => item.path == currentTab.value.path)
+			menuTabs.value = menuTabs.value.filter((item: any) => item.path === currentTab.value.path)
 			cachedViews.value = [currentTab.value.path]
 		}
 		return Promise.resolve()

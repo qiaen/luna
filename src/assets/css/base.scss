@@ -2,7 +2,6 @@
 @use './color.scss';
 @use './transition.scss';
 @use './elementui.scss';
-@use './scrollbar.scss';
 @use './font.scss';
 @use './space.scss';
 @use './tag.scss';
@@ -67,7 +66,7 @@ a {
 	position: relative;
 }
 .absolute {
-	position: absolute;
+	position: absolute!important;
 }
 .fixed {
 	position: fixed;

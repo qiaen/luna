@@ -54,6 +54,16 @@ export default defineConfig({
 		VueSetupExtend()
 	],
 	build: {
-		minify: 'terser'
+		minify: 'terser',
+		// rollupOptions: {
+		// 	output:{
+		// 		manualChunks(id, other) {
+		// 			/** 把layout结构依赖的js、css打包在一起，毕竟layout的是项目基层结构，打包在一起更加节省空间 */
+		// 			if (id.includes('/layout/')) {
+		// 				return 'layout'
+		// 			}
+		// 		}
+		// 	}
+		// }
 	}
 })
