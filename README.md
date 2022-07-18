@@ -1,6 +1,6 @@
 <h1><img height="52" src="https://user-content.gitlab-static.net/8ae8981a41b6b76e8fab9a3528e79364fb55664d/68747470733a2f2f6173736574732e6769746c61622d7374617469632e6e65742f75706c6f6164732f2d2f73797374656d2f70726f6a6563742f6176617461722f32353535303235342f64742d372e706e673f77696474683d323030"> 花木兰 - 后台管理系统模版</h1>
 
-> 是一个基于Vue3+TS+Vite的前端系统管理框架，集成状态管理，动态路由，自主登录，权限控制，自定义主题，动态导入element组件等功能
+> 是一个基于Vue3 + TS + Vite的前端系统管理框架，集成Pinia状态管理，动态路由，自主登录，权限控制，自定义主题，动态导入element组件等功能
 >（注意：使用新组件需要重新执行`npm install`）
 
 在线预览[http://mulan.diumx.com](http://mulan.diumx.com "http://mulan.diumx.com")
