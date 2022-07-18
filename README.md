@@ -12,13 +12,10 @@ git仓库[https://github.com/qiaen/luna](https://github.com/qiaen/luna "https://
 npm install
 
 # serve with hot reload at localhost:8080
-npm start
+npm run dev
 
 # build for production with minification
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 ## 前置的几个原则
 - 代码请务必遵守[JavaScript Standard Style 规范](https://standardjs.com/readme-zhcn.html "JavaScript Standard Style")，不用的包和变量务必删除，有必要的话可以采用eslint，代码自动格式化，养成良好的团队协作习惯
