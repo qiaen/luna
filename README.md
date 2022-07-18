@@ -191,6 +191,6 @@ export default {
 ```
 
 **其他功能请在启动后查看，这里不做具体解释。**
-&copy;TEEMO. 2020
+&copy;TEEMO. 2022
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
