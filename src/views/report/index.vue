@@ -94,19 +94,18 @@ let dialog = reactive({
 })
 
 /** 请求数据 */
-function get() {
+async function get() {
 	xoading.value = true
-	Jobs.jobList({
+	let res = await Jobs.jobList({
 		...params,
 		pageNo: pageInfo.pageNo,
 		pageSize: pageInfo.pageSize
-	}).then((res: any) => {
-		xoading.value = false
-		if (res.code === 200) {
-			mainTable.value = res.data
-			pageInfo.total = res.total
-		}
 	})
+	xoading.value = false
+	if (res && res.code === 200) {
+		mainTable.value = res.data
+		pageInfo.total = res.total
+	}
 }
 init()
 /** 当前选中行 */

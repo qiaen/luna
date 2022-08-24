@@ -12,18 +12,15 @@ export const useApi = defineStore('api', () => {
 	let userMenu = ref([])
 	/** 获取用户信息和菜单 */
 	async function GetUserInfo() {
-		return Base.getUserInfo({ appCode: Code.APPCODE })
-			.then((res: any) => {
-				if (res.code == 200) {
-					userInfo.value = res.data
-					userMenu.value = res.data.menu
-					Storage.set('userInfo', res.data)
-				}
-				return Promise.resolve(res)
-			})
-			.catch((err: any) => {
-				return Promise.reject(err)
-			})
+		let res = await Base.getUserInfo({ appCode: Code.APPCODE })
+		if (res && res.code == 200) {
+			userInfo.value = res.data
+			userMenu.value = res.data.menu
+			Storage.set('userInfo', res.data)
+			return Promise.resolve(res)
+		} else {
+			return Promise.reject(res)
+		}
 	}
 
 	/** 全局字典，服务器获取 */
@@ -32,7 +29,7 @@ export const useApi = defineStore('api', () => {
 	async function Qe() {
 		let res = await Base.getAllEnum()
 		if (res && res.code == 200) {
-			serviceEnum.value = res.data			
+			serviceEnum.value = res.data
 			Storage.set('serviceEnum', res.data)
 			return Promise.resolve(res)
 		} else {

@@ -28,6 +28,7 @@ import Roof from './roof.vue'
 import Tabs from './tabs.vue'
 import Store from '@/store'
 const { storeToRefs, useLayout } = Store
+/** 缓存页面列表 */
 let cachedViews = storeToRefs(useLayout()).cachedViews
 </script>
 <style lang="scss">
