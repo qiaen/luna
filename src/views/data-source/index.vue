@@ -104,23 +104,20 @@ let params = reactive({
 	name: ''
 })
 
-function get() {
+async function get() {
 	xoading.value = true
-	Users.getList({
+	let res = await Users.getList({
 		...params,
 		pageNo: 1,
 		keyword: ''
-	}).then((res: any) => {
-		xoading.value = false
-		if (res.code === 200) {
-			mainTable.value = res.data
-			pageInfo.total = res.data.length 
-		}
 	})
+	xoading.value = false
+	if (res && res.code === 200) {
+		mainTable.value = res.data
+		pageInfo.total = res.data.length
+	}
 }
-onMounted(() => {
-	init()
-})
+init()
 /** 抽屉相关 开始 */
 let dialog = ref(false)
 function backEditTask(val: boolean) {
