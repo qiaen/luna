@@ -3,7 +3,6 @@ import * as Base from '@/api/Base'
 import * as Code from '@/configs/code'
 import Storage from '@/utils/Storage'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 
 export const useApi = defineStore('api', () => {
 	/** 用户信息 */

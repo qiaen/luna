@@ -32,7 +32,6 @@
 </template>
 <script lang="ts" setup>
 import Store from '@/store'
-import { useRoute, useRouter } from 'vue-router'
 const { storeToRefs, useLayout } = Store
 let layout = useLayout()
 let router = useRouter()

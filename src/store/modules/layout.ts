@@ -1,7 +1,6 @@
 import Storage from '@/utils/Storage'
 import { CurrentTab } from '../interface'
-import { defineStore } from 'pinia'
-import { ref, Ref } from 'vue'
+import { Ref } from 'vue'
 export const useLayout = defineStore('layout', () => {
 	/** 用户所有的菜单 */
 	let menus: Ref<any[]> = ref([])

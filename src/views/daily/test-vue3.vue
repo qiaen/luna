@@ -13,7 +13,6 @@
 	<div>page.index = {{ page.index }}， 当有其他响应式的数据更新时这里也会更新，否则不更新</div>
 </template>
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
 import userQuery from './useQuery'
 let { username, list } = userQuery()
 let state:any = ref([])

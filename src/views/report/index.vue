@@ -76,7 +76,6 @@ export default {
 }
 </script>
 <script lang="ts" setup>
-import { reactive, ref, defineAsyncComponent } from 'vue'
 import { ElMessage } from 'element-plus'
 import * as Jobs from '@/api/Jobs'
 import Mixins from '@/utils/Mixins'

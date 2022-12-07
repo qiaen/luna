@@ -12,7 +12,6 @@
 	</section>
 </template>
 <script lang="ts" setup name="/task/checkin">
-import { onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 const props = defineProps(['cite'])
 const emit = defineEmits(['back'])

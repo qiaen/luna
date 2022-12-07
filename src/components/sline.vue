@@ -8,7 +8,8 @@
 		</div>
 	</div>
 </template>
-<script lang="ts" setup>
+<script lang="ts" setup name="Sline">
+/** zujian  */
 defineProps({
 	title: {
 		type: String,

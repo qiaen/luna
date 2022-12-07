@@ -11,8 +11,6 @@
 						<el-option v-for="item in serviceEnum.USER_STATUS" :label="item.name" :value="item.value" :key="item.value"></el-option>
 					</el-select>
 				</el-form-item>
-			</template>
-			<template #auto>
 				<el-form-item label="邮箱地址">
 					<el-input v-model="params.name" @keyup.enter="init" placeholder="邮箱地址" clearable></el-input>
 				</el-form-item>
@@ -90,7 +88,6 @@
 </template>
 <script lang="ts" setup name="/datasource">
 import { Search, CirclePlus, Brush } from '@element-plus/icons-vue'
-import { onMounted, reactive, ref, defineAsyncComponent } from 'vue'
 import { ElNotification, ElMessage } from 'element-plus'
 import * as Users from '@/api/Users'
 import Mixins from '@/utils/Mixins'
@@ -120,6 +117,7 @@ async function get() {
 init()
 /** 抽屉相关 开始 */
 let dialog = ref(false)
+/** 关闭任务窗口 */
 function backEditTask(val: boolean) {
 	dialog.value = false
 	if (val) {

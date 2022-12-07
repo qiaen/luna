@@ -1,4 +1,4 @@
-import { Ref, ref, watch } from 'vue'
+import { Ref } from 'vue'
 interface UserQuery {
 	username: Ref
 	list: any

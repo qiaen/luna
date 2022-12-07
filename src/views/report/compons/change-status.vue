@@ -23,7 +23,6 @@
 	</el-dialog>
 </template>
 <script lang="ts" setup>
-import { reactive, ref, watch } from 'vue'
 import { Finished } from '@element-plus/icons-vue'
 let emit = defineEmits(['back'])
 let props = defineProps(['dialog'])

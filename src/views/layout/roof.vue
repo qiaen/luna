@@ -30,12 +30,12 @@
 </template>
 <script lang="ts" setup>
 import Storage from '@/utils/Storage'
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Store from '@/store'
 const { storeToRefs, useLayout, useApi } = Store
 let layout = useLayout()
 let router = useRouter()
+let route = useRoute()
 function logout(val: string | void) {
 	if (val === 'a') {
 		router.push('/login')
@@ -48,9 +48,15 @@ function logout(val: string | void) {
 function collapse() {
 	layout.SetMenuCollapse()
 }
-let breadcrumb: any = ref([])
+
 let { isCollapse } = storeToRefs(layout)
 let userInfo: any = useApi().userInfo
+/** 面包屑 */
+let breadcrumb: any = ref([])
+function mthBread() {
+	breadcrumb.value = route.path == '/' ? [] : [route]
+}
+mthBread()
 </script>
 <style lang="scss">
 .layout-roof {
