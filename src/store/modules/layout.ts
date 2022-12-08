@@ -9,7 +9,11 @@ export const useLayout = defineStore('layout', () => {
 	function SetMenus(ms: any) {
 		menus.value = ms
 	}
-
+	/** 主题色 */
+	let isDark = ref(!!localStorage.HML_isDark)
+	function setTheme() {
+		isDark.value = !isDark.value
+	}
 	/**是否折叠，true：收起，false：展开 */
 	let isCollapse = ref(!!Storage.get('DSMenuCollapse'))
 	/** 菜单是否折叠 */
@@ -103,6 +107,8 @@ export const useLayout = defineStore('layout', () => {
 		/** 删除一个tab */
 		RemoveTab,
 		/** 关闭所有，关闭其他tabs */
-		CloseTabs
+		CloseTabs,
+		isDark,
+		setTheme
 	}
 })

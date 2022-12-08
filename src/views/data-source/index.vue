@@ -1,6 +1,6 @@
 <template>
 	<section class="data-sources">
-		<filters>
+		<filters :model="params" @reset="init">
 			<template #show>
 				<el-form-item label="用户名">
 					<el-input @keyup.enter="init" placeholder="用户名" clearable></el-input>
@@ -11,8 +11,6 @@
 						<el-option v-for="item in serviceEnum.USER_STATUS" :label="item.name" :value="item.value" :key="item.value"></el-option>
 					</el-select>
 				</el-form-item>
-			</template>
-			<template #auto>
 				<el-form-item label="邮箱地址">
 					<el-input v-model="params.name" @keyup.enter="init" placeholder="邮箱地址" clearable></el-input>
 				</el-form-item>

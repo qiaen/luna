@@ -1,5 +1,5 @@
 <template>
-	<section class="checkin flex1 bgfff pad12 hideit">
+	<section class="checkin flex1 bgmain pad12 hideit">
 		<el-scrollbar>
 			<sline title="作业登记">
 				<template v-slot:descript>也可以在列表中点击按钮打开我，点击上方返回，或者点击确定</template>

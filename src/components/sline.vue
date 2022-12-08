@@ -30,7 +30,7 @@ defineProps({
 	}
 	label {
 		padding: 0 6px;
-		color: #343a43;
+		color: var(--text-color-main);
 		font-size: 14px;
 		font-weight: bold;
 	}

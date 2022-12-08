@@ -3,6 +3,11 @@
 		<sline title="作业列表" size="big"></sline>
 		<div class="pt20">
 			<el-button @click="dialog = true" type="primary">打开盒子</el-button>
+			<!-- <div class="menu-gap">
+				<div></div>
+				<span></span>
+			</div> -->
+			<!-- <img src="http://localhost:3000/src/assets/img/img-cebianlan.png" alt="" /> -->
 		</div>
 		<!-- 作业查看，编辑，新增 -->
 		<drawer v-model="dialog" @back="backEditTask" title="作业登记">
@@ -31,3 +36,6 @@ function backEditTask(val: boolean) {
 	}
 }
 </script>
+<style lang="scss">
+
+</style>

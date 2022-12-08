@@ -13,14 +13,17 @@
 		<!-- 头像，退出登录 -->
 		<div class="flex avatar">
 			<div class="middle">{{ userInfo.name || '' }}</div>
-			<el-dropdown class="fxmiddle" @command="logout">
+			<el-dropdown class="fxmiddle" @command="change">
 				<span class="el-dropdown-link middle acc-avatar pointer">
 					<img :src="userInfo.avatar || '/img/dt-7.png'" alt="头像" />
 				</span>
 				<template #dropdown>
 					<el-dropdown-menu>
 						<el-dropdown-item command="a" class="iconfont icon-zidongqingli">
-							<span @click="logout()"> 退出登录</span>
+							<span> &nbsp;退出登录</span>
+						</el-dropdown-item>
+						<el-dropdown-item command="b">
+							<el-icon><MoonNight v-if="isDark" /><Sunny v-else /></el-icon><span>切换到{{isDark ? '日间' : '夜间'}}主题</span>
 						</el-dropdown-item>
 					</el-dropdown-menu>
 				</template>
@@ -29,6 +32,7 @@
 	</div>
 </template>
 <script lang="ts" setup>
+import { Sunny, MoonNight } from '@element-plus/icons-vue'
 import Storage from '@/utils/Storage'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
@@ -36,7 +40,7 @@ import Store from '@/store'
 const { storeToRefs, useLayout, useApi } = Store
 let layout = useLayout()
 let router = useRouter()
-function logout(val: string | void) {
+function change(val: string | void) {
 	if (val === 'a') {
 		router.push('/login')
 		layout.SetMenus([])
@@ -44,12 +48,16 @@ function logout(val: string | void) {
 		Storage.clear('token')
 		;(window as any).needAuth = true
 	}
+	if (val === 'b') {
+		layout.setTheme();
+		(window as any).setTheme()
+	}
 }
 function collapse() {
 	layout.SetMenuCollapse()
 }
 let breadcrumb: any = ref([])
-let { isCollapse } = storeToRefs(layout)
+let { isCollapse, isDark } = storeToRefs(layout)
 let userInfo: any = useApi().userInfo
 </script>
 <style lang="scss">

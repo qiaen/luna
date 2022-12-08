@@ -1,16 +1,16 @@
 <template>
-	<menu class="menus shrink0 fcfff hideit scroll-y">
+	<menu class="menus shrink0 hideit scroll-y">
 		<div class="width100 menu-logo">
 			<a :style="{ width: isCollapse ? '42px' : '' }" class="fxmiddle flex hideit height100">
 				<img src="/img/dt-7.png" />
-				<div class="fcfff pl5">
+				<div class="pl5">
 					<p class="fbold fsize14">花木兰</p>
 					<p class="fsize11">后台管理系统模版Vue3+TS</p>
 				</div>
 			</a>
 		</div>
 		<!-- 菜单列表，默认不折叠，当前选中 在store common内配置 -->
-		<el-menu :default-openeds="defaultOpeneds" :default-active="currentTab.path" background-color="#21325e" text-color="#fff" active-text-color="#fff" :collapse="isCollapse" :collapse-transition="false" :router="true">
+		<el-menu :default-openeds="defaultOpeneds" :default-active="currentTab.path" background-color="var(--menu-bg)" text-color="#bbb" active-text-color="#fff" :collapse="isCollapse" :collapse-transition="false" :router="true">
 			<template v-for="item in menus">
 				<el-sub-menu :key="item.name" v-if="item.child && item.child.length" :index="item.path">
 					<template #title>
@@ -44,21 +44,18 @@ let { isCollapse, menus, defaultOpeneds, currentTab } = storeToRefs(layout)
 </script>
 <style lang="scss">
 .menus {
-	background: #21325e;
+	background-color: var(--menu-bg-2);
 	.menu-logo {
 		height: 50px;
-		/*background: #1bc9b3;*/
-		background: #293d71;
+		background: var(--menu-bg-1);
+		p {
+			color: #fff;
+		}
 		img {
 			height: 38px;
 		}
 		a {
 			transform: translate3d(11px, 0, 0);
-			&.menu-collapse {
-				.fcfff {
-					display: none;
-				}
-			}
 		}
 	}
 	.el-menu-item-group__title {
@@ -72,10 +69,52 @@ let { isCollapse, menus, defaultOpeneds, currentTab } = storeToRefs(layout)
 .el-menu {
 	border-right: none;
 	.is-active {
-		background-color: #409eff !important;
+		// background-color: #409eff !important;
+		color: #fff;
+		position: relative;
 	}
 	.iconfont {
 		margin-right: 4px;
+	}
+	.el-menu-item {
+		position: relative;
+	}
+	.sub-span {
+		text-indent: 8px;
+		display: flex;
+		align-items: center;
+		&::before {
+			content: '';
+			display: inline-block;
+			width: 2px;
+			height: 14px;
+			background-color: hsla(0, 0%, 100%, 0.2);
+		}
+	}
+	.is-active:not(.is-opened) {
+		.sub-span::before {
+			background-color: var(--el-color-primary);
+		}
+		&::after {
+			content: '';
+			position: absolute;
+			display: inline-block;
+			right: 36px;
+			top: 1px;
+			background-image: url(@/assets/img/img-cebianlan.png);
+			background-size: 100% 100%;
+			height: 52px;
+			width: 28px;
+			right: -14px;
+			z-index: 100;
+		}
+	}
+}
+.dark-theme {
+	.is-active:not(.is-opened) {
+		&::after {
+			background-image: url(@/assets/img/img-cebianlan-dark.png);
+		}
 	}
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<div class="full-content hideit" :class="{ 'full-collapse': isCollapse }">
+	<div class="full-content hideit" :class="{ 'full-collapse': isCollapse}">
 		<el-config-provider :locale="zhCn">
 			<router-view />
 		</el-config-provider>

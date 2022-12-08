@@ -3,7 +3,7 @@
     <transition name="slide-right">
         <div v-if="modelValue" class="drawer-bg flex absolute">
             <div class="hideit pad20 flex1 flex">
-                <div class="drawer-left bgfff flex flex1 fxcolumn hideit">
+                <div class="drawer-left bgmain flex flex1 fxcolumn hideit">
                     <!-- 顶部 -->
                     <header class="flex shrink0 relative">
                         <!-- 返回区域 -->
@@ -21,7 +21,7 @@
                     </header>
                     <!-- 顶部 结束 -->
                     <!-- 左侧主内容 -->
-                    <div class="drawer-content flex flex1 hideit bgmain">
+                    <div class="drawer-content flex flex1 hideit bgpic">
                         <slot name="left"></slot>
                     </div>
                     <!-- 左侧主内容 结束 -->

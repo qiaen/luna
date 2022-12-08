@@ -1,5 +1,5 @@
 <template>
-	<div class="json bgfff">
+	<div class="json bgmain">
 		<el-scrollbar>
 			<h3>关于作者 Author</h3>
 			<ul class="json-ul">
@@ -52,7 +52,7 @@
 		font-size: 22px;
 		font-weight: 400;
 		margin: 0 0 30px;
-		color: #1f2d3d;
+		color: var(--text-color-main);
 	}
 	.json-ul {
 		margin-bottom: 50px;

@@ -3,11 +3,8 @@
 .grdcolor {
 	background: -webkit-linear-gradient(0deg, #ff9c58, #fe707e);
 }
-.bgfff {
-	background-color: #fff;
-}
-.bgmain {
-	background: #f1f5f9 url('../#{$main-bg}') no-repeat bottom right;
+.bgpic {
+	background: var(--bg-color-main) url('../#{$main-bg}') no-repeat bottom right;
 }
 // 采用的颜色以及对应的色值
 $colors: (
@@ -18,7 +15,8 @@ $colors: (
 	666: $d6,
 	333: $d3,
 	red: $red,
-	green: $green
+	green: $green,
+	main: $main
 );
 @each $key, $value in $colors {
 	.#{'fc' + $key} {

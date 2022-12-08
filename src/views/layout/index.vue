@@ -8,10 +8,10 @@
 			<!-- 顶部功能区 -->
 			<roof class="shrink0 layout-roof"></roof>
 			<!-- 主内容 -->
-			<div class="bgmain relative hideit flex-view">
+			<div class="bgpic relative hideit flex-view">
 				<tabs></tabs>
 				<!-- 页面缓存，注意事项看下方 cachedViews-->
-				<router-view class="bgfff main-content absolute flex-view" v-slot="{ Component }">
+				<router-view class="bgmain main-content absolute flex-view" v-slot="{ Component }">
 					<transition name="fade-transform" appear>
 						<keep-alive :include="cachedViews">
 							<component :is="Component" />
@@ -29,7 +29,7 @@ import Tabs from './tabs.vue'
 import Store from '@/store'
 const { storeToRefs, useLayout } = Store
 /** 缓存页面列表 */
-let cachedViews = storeToRefs(useLayout()).cachedViews
+let { cachedViews } = storeToRefs(useLayout())
 </script>
 <style lang="scss">
 // 页面切换中，隐藏抽屉
@@ -54,7 +54,8 @@ let cachedViews = storeToRefs(useLayout()).cachedViews
 	}
 	.layout-roof {
 		height: 50px;
-		border-bottom: 1px solid #dedede;
+		background-color: var(--bg-color-fff);
+		border-bottom: 1px solid var(--border-color-primary);
 	}
 }
 </style>

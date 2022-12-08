@@ -1,5 +1,5 @@
 <template>
-    <section class="dashboard bgfff center">
+    <section class="dashboard bgmain center">
         <!-- {{ name }} -->
         <img class="nothing" src="/img/nothing.png" />
     </section>

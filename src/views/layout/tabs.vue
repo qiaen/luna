@@ -74,7 +74,7 @@ function closeTabs(type: any) {
 		.el-dropdown-link {
 			width: 30px;
 			height: 30px;
-			background: #fff;
+			background: var(--bg-color-fff);
 			&:hover {
 				color: #2c5cc5;
 			}
@@ -108,7 +108,7 @@ function closeTabs(type: any) {
 		}
 	}
 	.el-tabs__item {
-		background: #fff;
+		background: var(--bg-color-fff);
 		padding: 0 10px;
 	}
 	.el-tabs__item ~ .el-tabs__item {

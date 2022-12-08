@@ -9,7 +9,7 @@
 	$td-height: 41px;
 	thead th {
 		background: #f9fafb;
-		color: #343a43;
+		color: var(--el-table-header-text-color);
 		height: $th-height;
 		padding: 0!important;
 		font-size: 14px;
@@ -25,7 +25,7 @@
 		height: $td-height;
 		padding: 0!important;
 		font-size: 13px;
-		color: #555;
+		color: var(--el-table-text-color);
 		.cell {
 			max-height: $td-height;
 		}
@@ -126,7 +126,7 @@
 	// 头部样式
 	.el-dialog__header,
 	.el-message-box__header {
-		background: #21325e;
+		background: var(--menu-bg-1);
 		padding: 12px 18px;
 		border-radius: 2px 2px 0 0;
 		margin-right: 0;
