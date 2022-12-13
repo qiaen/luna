@@ -3,11 +3,11 @@ import { ElLoading } from 'element-plus'
 
 /** 静态菜单列表 */
 import routes from './routes'
-import{ depthRoute } from './func'
-/** 导入Pinia实例 */
-import Store from '@/store'
-const { useApi, useLayout } = Store
-
+import { depthRoute } from './func'
+/** 一次性导入多个store */
+// import { Auth, Layout } from '@/store'
+import { GetUserInfo } from '@/store/Auth'
+import { SetCurrentTab, SetMenus } from '@/store/Layout'
 /** 项目信息 */
 const title = import.meta.env.VITE_TITLE
 
@@ -23,9 +23,7 @@ const loadingFun = (text = '初始化数据加载中...') => {
 }
 /** 是否在加载中 */
 let loading: any = null
-/** window */
-const wins: any = window
-wins.needAuth = true
+window.LN_needAuth = true
 const router = createRouter({
 	history: createWebHistory(),
 	routes
@@ -35,29 +33,23 @@ router.beforeEach(async (to, from) => {
 	// 不在白名单
 	if (!whiteList.includes(to.path)) {
 		/** 需要授权登录 */
-		if (wins.needAuth) {
+		if (window.LN_needAuth) {
 			loading = loadingFun()
 			console.log('verify the login information at initialization')
-			
-			const api = useApi()
-			const layout = useLayout()
 			/** 接口返回的用户信息 开始 */
-			let resUser = await api.GetUserInfo()
-			if (resUser && resUser.code === 200) {
-				wins.needAuth = false
-				let { data: { menus, position, permission } } = resUser
-				/** 放在window下其实不安全，最好放到vuex里 */
-				wins.userPosition = position
-				wins.permission = permission
+			let res = await GetUserInfo()
+			if (res) {
+				window.LN_needAuth = false
+				let { menus } = res
 				/**  递归路由 */
 				let temp = depthRoute(menus, [])
 				routes[0].children = [...temp, ...(routes[0].children as any)]
 				/** 添加（重写）动态路由 */
 				await router.addRoute(routes[0])
 				/** 生成菜单，排除不需要显示的菜单 */
-				layout.SetMenus(menus.filter((item: any) => !item.hideInmenu))
+				SetMenus(menus.filter((item: any) => !item.hideInmenu))
 				/** 用户已经登录，在这里可以继续异步做登录后的事情，比如获取全局枚举等 */
-				await api.GetAllEnum()
+				// await api.GetAllEnum()
 				loading.close()
 				loading = null
 				return { path: to.path }
@@ -75,8 +67,7 @@ router.beforeEach(async (to, from) => {
 /** 每次路由变动后：可以做页面分析等 */
 router.afterEach((to: any) => {
 	// 切换选中的tab，请查看layout/tabs.vue
-	const layout = useLayout()
-	layout.SetCurrentTab({
+	SetCurrentTab({
 		label: to.name,
 		path: to.path,
 		icon: to.meta?.icon

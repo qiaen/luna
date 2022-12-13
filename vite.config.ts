@@ -8,7 +8,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 /** 拓展 set，可以直接使用 name */
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
-
+import autoImport from 'unplugin-auto-import/vite'
 const base: any = {
 	isProd: process.env.NODE_ENV === 'production',
 	/** 目标接口域名 */
@@ -51,7 +51,10 @@ export default defineConfig({
 				})
 			]
 		}),
-		VueSetupExtend()
+		VueSetupExtend(),
+		autoImport({
+			imports: ['vue', 'vue-router']
+		})
 	],
 	build: {
 		minify: 'terser',

@@ -13,7 +13,7 @@
 			let h = document.querySelector('html')
 			if (h.classList.contains('dark-theme')) {
 				h.classList.remove('dark-theme')
-				localStorage.HML_isDark = undefined
+				delete localStorage.HML_isDark
 			} else {
 				h.setAttribute('class', 'dark-theme')
 				localStorage.HML_isDark = 1

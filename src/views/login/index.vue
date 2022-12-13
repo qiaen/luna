@@ -87,13 +87,10 @@
 	</div>
 </template>
 <script lang="ts" setup>
-import { ref, reactive, computed } from 'vue'
 import { ElMessage, ElNotification } from 'element-plus'
-import { useRouter } from 'vue-router'
 import * as Account from '@/api/Account'
 import Storage from '@/utils/Storage'
-import Store from '@/store'
-const { useLayout } = Store
+import { RemoveTab } from '@/store/Layout'
 /** 路由 */
 let router = useRouter()
 let form = reactive({
@@ -133,17 +130,14 @@ async function login() {
 		email: form.email
 	}
 	if (!rotate.value && ltp.value === 1) {
-		let res: any = await Account.login(p)
-		if (res && res.code == 200) {
+		let [data, res] = await Account.login(p)
+		if (data) {
 			ElMessage.success('登录成功！')
-			Storage.set('token', res.data)
+			Storage.set('token', data)
 			/** 关闭login页面 */
-			useLayout()
-				.RemoveTab({ path: '/login' })
-				.then(() => {
-					/** 跳转到首页 */
-					router.replace('/')
-				})
+			RemoveTab({ path: '/login' }).then(() => {
+				router.replace('/')
+			})
 		} else {
 			ElMessage.error((res && res.message) || '登陆有误，请打开控制台查看错误信息')
 		}

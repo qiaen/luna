@@ -96,7 +96,7 @@ let dialog = reactive({
 /** 请求数据 */
 async function get() {
 	xoading.value = true
-	let res = await Jobs.jobList({
+	let [_, res] = await Jobs.jobList({
 		...params,
 		pageNo: pageInfo.pageNo,
 		pageSize: pageInfo.pageSize

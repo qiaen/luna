@@ -2,7 +2,7 @@
 	<div class="flex">
 		<!-- 面包屑，折叠菜单 -->
 		<div class="flex1 hideit fxmiddle bread">
-			<i @click="collapse" :style="{ transform: `rotate(${isCollapse ? 0 : 180}deg)` }" class="iconfont icon-zhankai middle fsize20 pointer"></i>
+			<i @click="SetMenuCollapse" :style="{ transform: `rotate(${isCollapse ? 0 : 180}deg)` }" class="iconfont icon-zhankai middle fsize20 pointer"></i>
 			<el-breadcrumb separator="/">
 				<el-breadcrumb-item to="/">首页</el-breadcrumb-item>
 				<el-breadcrumb-item v-for="(item, index) in breadcrumb" :key="index">
@@ -23,7 +23,7 @@
 							<span> &nbsp;退出登录</span>
 						</el-dropdown-item>
 						<el-dropdown-item command="b">
-							<el-icon><MoonNight v-if="isDark" /><Sunny v-else /></el-icon><span>切换到{{isDark ? '日间' : '夜间'}}主题</span>
+							<el-icon><MoonNight v-if="isDark" /><Sunny v-else /></el-icon><span>切换到{{ isDark ? '日间' : '夜间' }}主题</span>
 						</el-dropdown-item>
 					</el-dropdown-menu>
 				</template>
@@ -33,32 +33,23 @@
 </template>
 <script lang="ts" setup>
 import { Sunny, MoonNight } from '@element-plus/icons-vue'
-import Storage from '@/utils/Storage'
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import Store from '@/store'
-const { storeToRefs, useLayout, useApi } = Store
-let layout = useLayout()
-let router = useRouter()
+import { userInfo, Logout } from '@/store/Auth'
+import { SetMenuCollapse, SetTheme, isCollapse, isDark } from '@/store/Layout'
+
+const route: any = useRoute()
 function change(val: string | void) {
 	if (val === 'a') {
-		router.push('/login')
-		layout.SetMenus([])
-		layout.CloseTabs('all')
-		Storage.clear('token')
-		;(window as any).needAuth = true
+		Logout()
 	}
 	if (val === 'b') {
-		layout.setTheme();
-		(window as any).setTheme()
+		SetTheme()
+		window.setTheme()
 	}
 }
-function collapse() {
-	layout.SetMenuCollapse()
-}
-let breadcrumb: any = ref([])
-let { isCollapse, isDark } = storeToRefs(layout)
-let userInfo: any = useApi().userInfo
+/** 面包屑 */
+let breadcrumb: any = computed(() => {
+	return route.path == '/' ? [] : [route]
+})
 </script>
 <style lang="scss">
 .layout-roof {

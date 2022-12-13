@@ -21,16 +21,7 @@
 					</el-select>
 				</el-form-item>
 				<el-form-item label="创建时间">
-					<el-date-picker
-						@change="init"
-						v-model="params.date"
-						:format="'YYYY-MM-DD HH:mm:ss'"
-						type="datetimerange"
-						range-separator="至"
-						start-placeholder="开始时间"
-						end-placeholder="结束时间"
-						style="width: 380px"
-					/>
+					<el-date-picker @change="init" v-model="params.date" :format="'YYYY-MM-DD HH:mm:ss'" type="datetimerange" range-separator="至" start-placeholder="开始时间" end-placeholder="结束时间" style="width: 380px" />
 				</el-form-item>
 			</template>
 			<template #button>
@@ -95,7 +86,7 @@ import Mixins from '@/utils/Mixins'
 /** 动态异步导入抽屉的内容 */
 const checkin = defineAsyncComponent(() => import('../task/checkin.vue'))
 const { xoading, mainTable, pageInfo, init, matchEnum, sizeChange, pageChange, mainSelected, mainSelectionChange, serviceEnum, currtRow } = Mixins(get)
-let params = reactive({
+let params:any = reactive({
 	status: '',
 	userStatus: '',
 	date: [],
@@ -104,7 +95,7 @@ let params = reactive({
 
 async function get() {
 	xoading.value = true
-	let res = await Users.getList({
+	let [_, res] = await Users.getList({
 		...params,
 		pageNo: 1,
 		keyword: ''

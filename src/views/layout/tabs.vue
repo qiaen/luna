@@ -21,8 +21,8 @@
 				</span>
 				<template #dropdown>
 					<el-dropdown-menu>
-						<el-dropdown-item @click="closeTabs('all')">关闭所有</el-dropdown-item>
-						<el-dropdown-item @click="closeTabs('others')">关闭其他</el-dropdown-item>
+						<el-dropdown-item @click="xTabs('all')">关闭所有</el-dropdown-item>
+						<el-dropdown-item @click="xTabs('others')">关闭其他</el-dropdown-item>
 						<el-dropdown-item @click="removeTab($route.path)">关闭</el-dropdown-item>
 					</el-dropdown-menu>
 				</template>
@@ -31,13 +31,9 @@
 	</div>
 </template>
 <script lang="ts" setup>
-import Store from '@/store'
-import { useRoute, useRouter } from 'vue-router'
-const { storeToRefs, useLayout } = Store
-let layout = useLayout()
+import { menuTabs, CloseTabs, RemoveTab, currentTab } from '@/store/Layout'
 let router = useRouter()
 let route = useRoute()
-let { menuTabs, currentTab } = storeToRefs(layout)
 
 /** 选中tab跳转页面 */
 function selectTab(tab: any) {
@@ -45,7 +41,7 @@ function selectTab(tab: any) {
 }
 /** 删除tab，涉及到跳转 */
 function removeTab(path?: any) {
-	layout.RemoveTab({ path }).then(() => {
+	RemoveTab({ path }).then(() => {
 		// 删除tab成功后，如果删除的是当前查看的，就回到首页
 		if (path === route.path) {
 			/** menuTabs的数量，有就回到最后一个，否则回到主页 */
@@ -59,8 +55,8 @@ function removeTab(path?: any) {
 	})
 }
 /** 根据类型关闭tab */
-function closeTabs(type: any) {
-	layout.CloseTabs(type).then(() => {
+function xTabs(type: any) {
+	CloseTabs(type).then(() => {
 		// 删除tab成功后，如果删除的是当前查看的，就回到首页
 		if (type === 'all') {
 			selectTab({ paneName: '/' })

@@ -36,11 +36,7 @@
 	</menu>
 </template>
 <script lang="ts" setup>
-import Store from '@/store'
-const { storeToRefs, useLayout } = Store
-let layout = useLayout()
-
-let { isCollapse, menus, defaultOpeneds, currentTab } = storeToRefs(layout)
+import { isCollapse, menus, defaultOpeneds, currentTab } from '@/store/Layout'
 </script>
 <style lang="scss">
 .menus {

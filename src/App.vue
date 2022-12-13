@@ -1,15 +1,13 @@
 <template>
-	<div class="full-content hideit" :class="{ 'full-collapse': isCollapse}">
+	<div class="full-content hideit" :class="{ 'full-collapse': isCollapse }">
 		<el-config-provider :locale="zhCn">
 			<router-view />
 		</el-config-provider>
 	</div>
 </template>
 <script lang="ts" setup>
-import Store from '@/store'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
-const { storeToRefs, useLayout } = Store
-let { isCollapse } = storeToRefs(useLayout())
+import { isCollapse } from '@/store/Layout'
 </script>
 <style lang="scss">
 // 默认菜单宽度
