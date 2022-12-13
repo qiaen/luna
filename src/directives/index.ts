@@ -1,6 +1,5 @@
 import { permission } from '@/store/Auth'
 const Permission = (el: any, bind: any) => {
-	console.log(permission.value)
 	if (permission.value && permission.value.length) {
 		let hide = false
 		/** 查找权限逻辑 */

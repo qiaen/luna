@@ -26,10 +26,8 @@
 import Menus from './menu.vue'
 import Roof from './roof.vue'
 import Tabs from './tabs.vue'
-import Store from '@/store'
-const { storeToRefs, useLayout } = Store
 /** 缓存页面列表 */
-let { cachedViews } = storeToRefs(useLayout())
+import { cachedViews } from '@/store/Layout'
 </script>
 <style lang="scss">
 // 页面切换中，隐藏抽屉

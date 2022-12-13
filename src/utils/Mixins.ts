@@ -1,6 +1,5 @@
 import { ref, reactive, Ref } from 'vue'
-import Store from '@/store'
-const { useApi, storeToRefs } = Store
+import { serviceEnum } from '@/store/Hub'
 interface PageInfo {
 	pageNo: number
 	total: number
@@ -15,7 +14,7 @@ interface Mx {
 	/** 表格被选中的信息数组 */
 	mainSelected: Ref<any[]>
 	/** 表格点击选中的信息对象 */
-	currtRow: Ref<{ [propsName:string]: any }>
+	currtRow: Ref<{ [propsName: string]: any }>
 	/** 主表复选项变动 */
 	mainSelectionChange(values: []): void
 	/** 分页信息 */
@@ -46,7 +45,7 @@ export default function (get: Function | void): Mx {
 	}
 	// let store = useStore()
 	/** 表单分页信息, pageNo: 页码, total: 总数, pageSize: 每页数量, layout: 总数, layout: 支持功能, sizes: 可选分页*/
-	let pageInfo:any = reactive({
+	let pageInfo: any = reactive({
 		// 当前查看的页码
 		pageNo: 1,
 		// 表总数量
@@ -76,9 +75,6 @@ export default function (get: Function | void): Mx {
 		pageInfo.pageNo = val
 		get && get()
 	}
-	/** 接口枚举 */
-	const serviceEnum: any = storeToRefs(useApi()).serviceEnum
-	
 	/** 匹配枚举 返回label  this.matchEnum('PULL_INCRE_TYPE', 'day_all') */
 	function matchEnum(type: string, key: string) {
 		let enums = serviceEnum.value[type]

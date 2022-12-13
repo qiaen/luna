@@ -25,10 +25,7 @@ import { ref, computed, useSlots, onMounted, onDeactivated, onUnmounted, watch, 
 import { ArrowUp, ArrowDown, Refresh } from '@element-plus/icons-vue'
 import { FormInstance } from 'element-plus'
 import Storage from '@/utils/Storage'
-import Store from '@/store'
-const { storeToRefs, useLayout } = Store
-let layout = useLayout()
-const { isCollapse } = storeToRefs(layout)
+import { isCollapse } from '@/store/Layout'
 
 defineProps({
 	/** 尺寸大小 */

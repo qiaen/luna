@@ -1,8 +1,17 @@
-import { storeToRefs } from 'pinia'
-import { useApi } from './modules/api'
-import { useLayout } from './modules/layout'
-export default {
-    storeToRefs,
-    useApi,
-    useLayout
-}
+/** 此文件只是方便一个页面用到多个状态管理文件的时候一次性导入
+ * 其实无意增加此index.ts文件，在开发中用到某个直接导入具体的某个文件更好，那样更能快速定位
+ * 之前在项目中用Pinia做装填管理，后来觉得其实没必要，所以删掉了Pinia，直接通过导入的形式做自己的全局状态管理
+ * 请勿直接通过页面直接去修改魔改某个属性，而是要调用他的函数去修改 */
+
+ import * as Hub from './Hub'
+ import * as Auth from './Auth'
+ import * as Layout from './Layout'
+ export {
+	 /** 项目用的全局信息 */
+	 Hub,
+	 /** 页面框架信息，菜单，当前操作页面，是否折叠菜单，缓存页面等 */
+	 Layout,
+	 /** 当前登录用户信息，阿里OSS信息，退出登录操作等 */
+	 Auth
+ }
+ 

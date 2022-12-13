@@ -1,5 +1,5 @@
 <template>
-	<div class="full-content hideit" :class="{ 'full-collapse': isCollapse }">
+	<div v-loading="loading" element-loading-text="Loading..." class="full-content hideit" :class="{ 'full-collapse': isCollapse }">
 		<el-config-provider :locale="zhCn">
 			<router-view />
 		</el-config-provider>
@@ -7,7 +7,7 @@
 </template>
 <script lang="ts" setup>
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
-import { isCollapse } from '@/store/Layout'
+import { isCollapse, loading } from '@/store/Layout'
 </script>
 <style lang="scss">
 // 默认菜单宽度
