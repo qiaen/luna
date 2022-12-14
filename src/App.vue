@@ -18,7 +18,7 @@ import { isCollapse, loading } from '@/store/Layout'
 // 菜单折叠后的样式和宽度
 .full-collapse {
 	.menus {
-		width: 60px;
+		width: 64px;
 	}
 }
 </style>

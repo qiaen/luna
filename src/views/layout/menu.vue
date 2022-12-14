@@ -51,7 +51,7 @@ import { isCollapse, menus, defaultOpeneds, currentTab } from '@/store/Layout'
 			height: 38px;
 		}
 		a {
-			transform: translate3d(11px, 0, 0);
+			transform: translate3d(14px, 0, 0);
 		}
 	}
 	.el-menu-item-group__title {
@@ -65,15 +65,15 @@ import { isCollapse, menus, defaultOpeneds, currentTab } from '@/store/Layout'
 .el-menu {
 	border-right: none;
 	.is-active {
-		// background-color: #409eff !important;
+		overflow: hidden;
 		color: #fff;
 		position: relative;
 	}
 	.iconfont {
-		margin-right: 4px;
+		margin: 0 4px;
 	}
 	.el-menu-item {
-		position: relative;
+		padding-right: 0;
 	}
 	.sub-span {
 		text-indent: 8px;
@@ -95,7 +95,6 @@ import { isCollapse, menus, defaultOpeneds, currentTab } from '@/store/Layout'
 			content: '';
 			position: absolute;
 			display: inline-block;
-			right: 36px;
 			top: 1px;
 			background-image: url(@/assets/img/img-cebianlan.png);
 			background-size: 100% 100%;
@@ -112,5 +111,9 @@ import { isCollapse, menus, defaultOpeneds, currentTab } from '@/store/Layout'
 			background-image: url(@/assets/img/img-cebianlan-dark.png);
 		}
 	}
+}
+/** 弹出层 菜单折叠后 */
+.el-popper .el-menu-item.is-active {
+	color: var(--text-color-main);
 }
 </style>
