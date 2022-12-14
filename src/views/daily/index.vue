@@ -40,6 +40,7 @@
 			</ul>
 			<h3>其他功能</h3>
 			<ul class="json-ul">
+				<li><strong>特色：</strong>新增了暗系主题</li>
 				<li><strong>request：</strong>echarts图表，vue-split分割等可以自助引用，做到只专注模版框架功能</li>
 			</ul>
 		</el-scrollbar>

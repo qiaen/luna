@@ -1,5 +1,5 @@
 <template>
-	<div v-loading="loading" element-loading-text="Loading..." class="full-content hideit" :class="{ 'full-collapse': isCollapse }">
+	<div v-loading="loading" element-loading-text="初始化加载中...." class="full-content hideit" :class="{ 'full-collapse': isCollapse }">
 		<el-config-provider :locale="zhCn">
 			<router-view />
 		</el-config-provider>

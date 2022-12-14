@@ -1,20 +1,22 @@
 <template>
 	<section class="report">
-		<el-form :inline="true" :model="params" class="zm-filter">
-			<el-form-item label="作业名称">
-				<el-input v-model="params.keyword" @keyup.enter="init" placeholder="作业名称、创建人" clearable></el-input>
-			</el-form-item>
-			<el-form-item label="作业类型">
-				<el-select @change="init" placeholder="请选择作业类型" v-model="params.jobType" clearable>
-					<el-option label="全部" value></el-option>
-					<el-option v-for="item in serviceEnum.JOB_TYPE" :label="item.name" :value="item.value" :key="item.value"></el-option>
-				</el-select>
-			</el-form-item>
-			<el-form-item>
+		<filters :model="params" @reset="init">
+			<template #show>
+				<el-form-item label="作业名称" prop="keyword">
+					<el-input v-model="params.keyword" @keyup.enter="init" placeholder="作业名称、创建人" style="width: 140px;" clearable></el-input>
+				</el-form-item>
+				<el-form-item label="作业类型" prop="jobType">
+					<el-select @change="init" placeholder="请选择作业类型" v-model="params.jobType" style="width: 140px;" clearable>
+						<el-option label="全部" value></el-option>
+						<el-option v-for="item in serviceEnum.JOB_TYPE" :label="item.name" :value="item.value" :key="item.value"></el-option>
+					</el-select>
+				</el-form-item>
+			</template>
+			<template #button>
 				<el-button type="primary" @click="init" :loading="xoading" :icon="Search">查询</el-button>
 				<el-button :disabled="!mainSelected.length" @click="showSelected" v-permission="17" type="success"> <i class="iconfont icon-xiezi fsize12 pr5"></i>管理员可见 </el-button>
-			</el-form-item>
-		</el-form>
+			</template>
+		</filters>
 		<el-table v-loading="xoading" class="zm-table" @selection-change="mainSelectionChange" height="100%" :data="mainTable" border>
 			<el-table-column type="selection" width="55" align="center"></el-table-column>
 			<el-table-column prop="id" label="作业ID" width="75" align="center"></el-table-column>

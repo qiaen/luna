@@ -17,13 +17,12 @@
 		<div class="shrink0 close-btn">
 			<el-dropdown placement="bottom-end">
 				<span class="el-dropdown-link center pointer fcgreen">
-					<i class="iconfont icon-zidongqingli"></i>
+					<i class="iconfont icon-zidongqingli" @click="removeTab($route.path)"></i>
 				</span>
 				<template #dropdown>
 					<el-dropdown-menu>
 						<el-dropdown-item @click="xTabs('all')">关闭所有</el-dropdown-item>
 						<el-dropdown-item @click="xTabs('others')">关闭其他</el-dropdown-item>
-						<el-dropdown-item @click="removeTab($route.path)">关闭</el-dropdown-item>
 					</el-dropdown-menu>
 				</template>
 			</el-dropdown>

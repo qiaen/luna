@@ -2,25 +2,25 @@
 	<section class="data-sources">
 		<filters :model="params" @reset="init">
 			<template #show>
-				<el-form-item label="用户名">
-					<el-input @keyup.enter="init" placeholder="用户名" clearable></el-input>
+				<el-form-item label="用户名" prop="name">
+					<el-input v-model="params.name" style="width: 130px;" @keyup.enter="init" placeholder="用户名" clearable></el-input>
 				</el-form-item>
-				<el-form-item label="状态">
-					<el-select @change="init" placeholder="请选择用户状态" v-model="params.userStatus" clearable>
+				<el-form-item label="状态" prop="userStatus">
+					<el-select @change="init" placeholder="请选择用户状态" style="width: 130px;" v-model="params.userStatus" clearable>
 						<el-option label="全部" value></el-option>
 						<el-option v-for="item in serviceEnum.USER_STATUS" :label="item.name" :value="item.value" :key="item.value"></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item label="邮箱地址">
-					<el-input v-model="params.name" @keyup.enter="init" placeholder="邮箱地址" clearable></el-input>
+				<el-form-item label="邮箱地址" prop="email">
+					<el-input v-model="params.email" @keyup.enter="init" style="width: 140px;" placeholder="邮箱地址" clearable></el-input>
 				</el-form-item>
-				<el-form-item label="用户身份">
-					<el-select @change="init" placeholder="请选择作业类型" v-model="params.status" clearable>
+				<el-form-item label="用户身份" prop="status">
+					<el-select @change="init" placeholder="请选择作业类型" style="width: 140px;" v-model="params.status" clearable>
 						<el-option label="全部" value></el-option>
 						<el-option v-for="item in serviceEnum.USER_POSITION" :label="item.name" :value="item.value" :key="item.value"></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item label="创建时间">
+				<el-form-item label="创建时间" prop="date">
 					<el-date-picker @change="init" v-model="params.date" :format="'YYYY-MM-DD HH:mm:ss'" type="datetimerange" range-separator="至" start-placeholder="开始时间" end-placeholder="结束时间" style="width: 380px" />
 				</el-form-item>
 			</template>
