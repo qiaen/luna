@@ -16,8 +16,8 @@
 		<!-- 关闭所有 -->
 		<div class="shrink0 close-btn">
 			<el-dropdown placement="bottom-end">
-				<span class="el-dropdown-link center pointer fcgreen">
-					<i class="iconfont icon-zidongqingli" @click="removeTab($route.path)"></i>
+				<span @click="removeTab($route.path)" class="el-dropdown-link center pointer fcgreen">
+					<i class="iconfont icon-zidongqingli"></i>
 				</span>
 				<template #dropdown>
 					<el-dropdown-menu>
