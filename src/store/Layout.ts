@@ -83,7 +83,7 @@ export function CloseTabs(type: string) {
 }
 
 /** 主题色 */
-export let isDark = ref(!!localStorage.HML_isDark)
+export let isDark = ref(localStorage.HML_isDark ? '1' : '0')
 export function SetTheme() {
-	isDark.value = !isDark.value
+	isDark.value = isDark.value == '1' ? '0' : '1'
 }
