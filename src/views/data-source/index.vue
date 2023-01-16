@@ -60,7 +60,7 @@
 			</el-table-column>
 		</el-table>
 		<el-pagination
-			class="pt10 txright"
+			class="pt10 right"
 			@size-change="sizeChange"
 			@current-change="pageChange"
 			v-model:currentPage="pageInfo.pageNo"

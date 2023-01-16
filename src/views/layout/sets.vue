@@ -20,23 +20,34 @@
 			</el-radio-group>
 		</div>
 		<div class="line mt20 mb20"></div>
-		<div class="pl20 pr20">
+		<div class="pl20 pr5">
 			<div class="fsize20 mb10">使用服务</div>
 			<div class="flex pt10">
 				<div class="flex1">语言<span class="fsize12">(Languages)</span></div>
-				<span>中文 (简体)</span>
+				<span>
+					<el-dropdown>
+						<el-button text>中文 (简体)</el-button>
+						<template #dropdown>
+							<el-dropdown-menu>
+								<el-dropdown-item>中文 (简体)</el-dropdown-item>
+								<el-dropdown-item>English</el-dropdown-item>
+								<el-dropdown-item>中文 (繁体)</el-dropdown-item>
+							</el-dropdown-menu>
+						</template>
+					</el-dropdown>
+				</span>
 			</div>
 			<div class="flex pt20">
 				<div class="flex1">使用缓存<span class="fsize12">(Use Storage)</span></div>
-				<span>是</span>
+				<span class="pr15">是</span>
 			</div>
 		</div>
-		<el-button @click="Logout" class="absolute logout-btn" text bg> <i class="iconfont icon-tuichudenglu fsize14"></i>&nbsp;&nbsp;退出登录 </el-button>
+		<el-button @click="Logout" class="absolute logout-btn" text bg> <i class="iconfont icon-tuichudenglu fsize14"></i>&nbsp;&nbsp;退出登录</el-button>
 	</div>
 </template>
 <script lang="ts" setup>
 import { isDark, SetTheme } from '@/store/Layout'
-import { userInfo, Logout } from '@/store/Auth'
+import { Logout } from '@/store/Auth'
 function changeTheme() {
 	SetTheme()
 	window.setTheme()
