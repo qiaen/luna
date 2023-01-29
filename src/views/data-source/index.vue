@@ -3,19 +3,19 @@
 		<filters :model="params" @reset="init">
 			<template #show>
 				<el-form-item label="用户名" prop="name">
-					<el-input v-model="params.name" style="width: 130px;" @keyup.enter="init" placeholder="用户名" clearable></el-input>
+					<el-input v-model="params.name" style="width: 130px" @keyup.enter="init" placeholder="用户名" clearable></el-input>
 				</el-form-item>
 				<el-form-item label="状态" prop="userStatus">
-					<el-select @change="init" placeholder="请选择用户状态" style="width: 130px;" v-model="params.userStatus" clearable>
+					<el-select @change="init" placeholder="请选择用户状态" style="width: 130px" v-model="params.userStatus" clearable>
 						<el-option label="全部" value></el-option>
 						<el-option v-for="item in serviceEnum.USER_STATUS" :label="item.name" :value="item.value" :key="item.value"></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item label="邮箱地址" prop="email">
-					<el-input v-model="params.email" @keyup.enter="init" style="width: 140px;" placeholder="邮箱地址" clearable></el-input>
+					<el-input v-model="params.email" @keyup.enter="init" style="width: 140px" placeholder="邮箱地址" clearable></el-input>
 				</el-form-item>
 				<el-form-item label="用户身份" prop="status">
-					<el-select @change="init" placeholder="请选择作业类型" style="width: 140px;" v-model="params.status" clearable>
+					<el-select @change="init" placeholder="请选择作业类型" style="width: 140px" v-model="params.status" clearable>
 						<el-option label="全部" value></el-option>
 						<el-option v-for="item in serviceEnum.USER_POSITION" :label="item.name" :value="item.value" :key="item.value"></el-option>
 					</el-select>
@@ -79,14 +79,14 @@
 </template>
 <script lang="ts" setup name="/datasource">
 import { Search, CirclePlus, Brush } from '@element-plus/icons-vue'
-import { onMounted, reactive, ref, defineAsyncComponent } from 'vue'
+import { reactive, ref, defineAsyncComponent } from 'vue'
 import { ElNotification, ElMessage } from 'element-plus'
 import * as Users from '@/api/Users'
 import Mixins from '@/utils/Mixins'
 /** 动态异步导入抽屉的内容 */
 const checkin = defineAsyncComponent(() => import('../task/checkin.vue'))
 const { xoading, mainTable, pageInfo, init, matchEnum, sizeChange, pageChange, mainSelected, mainSelectionChange, serviceEnum, currtRow } = Mixins(get)
-let params:any = reactive({
+let params: any = reactive({
 	status: '',
 	userStatus: '',
 	date: [],
