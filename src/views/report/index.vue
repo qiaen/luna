@@ -14,7 +14,7 @@
 			</template>
 			<template #button>
 				<el-button type="primary" @click="init" :loading="xoading" :icon="Search">查询</el-button>
-				<el-button :disabled="!mainSelected.length" @click="showSelected" v-permission="17" type="success"> <i class="iconfont icon-xiezi fsize12 pr5"></i>管理员可见 </el-button>
+				<!-- <el-button :disabled="!mainSelected.length" @click="showSelected" v-permission="17" type="success"> <i class="iconfont icon-xiezi fsize12 pr5"></i>管理员可见 </el-button> -->
 			</template>
 		</filters>
 		<el-table v-loading="xoading" class="zm-table" @selection-change="mainSelectionChange" height="100%" :data="mainTable" border>

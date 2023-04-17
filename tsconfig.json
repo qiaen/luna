@@ -10,7 +10,6 @@
 		"lib": ["esnext", "dom"],
 		"types": ["vite/client", "element-plus/global"],
 		"plugins": [{ "name": "@vuedx/typescript-plugin-vue" }],
-        "suppressImplicitAnyIndexErrors": true,
 		"paths": {
 			"@/*": ["./src/*"]
 		}

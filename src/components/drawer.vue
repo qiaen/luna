@@ -34,11 +34,14 @@
 </template>
 <script lang="ts" setup>
 import { ArrowLeftBold } from '@element-plus/icons-vue'
-defineProps(['title', 'modelValue'])
-
-const emit = defineEmits(['back'])
+let router = useRouter()
+let props = defineProps(['title', 'modelValue', 'route'])
+let emit = defineEmits(['back'])
 
 function back() {
+	if (['', true].includes(props.route)) {
+		router.back()
+	}
 	emit('back', false)
 }
 </script>

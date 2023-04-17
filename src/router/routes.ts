@@ -9,6 +9,22 @@ export default [
 		},
 		children: [
 			{
+				path: '/datasource/:id',
+				name: '用户详情',
+				component: () => import('@/views/data-source/index.vue'),
+				meta: {
+					menu: false
+				}
+			},
+			{
+				path: '/test',
+				name: '测试页面',
+				component: () => import('@/views/test/index.vue'),
+				meta: {
+					menu: false
+				}
+			},
+			{
 				path: '/403',
 				name: '无权限',
 				file: '/error/403.vue',

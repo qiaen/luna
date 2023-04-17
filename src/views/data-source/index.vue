@@ -70,7 +70,7 @@
 			:total="pageInfo.total"
 		></el-pagination>
 		<!-- 作业查看，编辑，新增 -->
-		<drawer v-model="dialog" @back="backEditTask" :title="currtRow.name">
+		<drawer v-model="dialog" @back="backEditTask" :title="currtRow.name" route>
 			<template #left>
 				<checkin cite="true" @back="backEditTask"></checkin>
 			</template>
@@ -79,10 +79,12 @@
 </template>
 <script lang="ts" setup name="/datasource">
 import { Search, CirclePlus, Brush } from '@element-plus/icons-vue'
-import { reactive, ref, defineAsyncComponent } from 'vue'
 import { ElNotification, ElMessage } from 'element-plus'
 import * as Users from '@/api/Users'
 import Mixins from '@/utils/Mixins'
+/** 路由 */
+let route = useRoute()
+let router = useRouter()
 /** 动态异步导入抽屉的内容 */
 const checkin = defineAsyncComponent(() => import('../task/checkin.vue'))
 const { xoading, mainTable, pageInfo, init, matchEnum, sizeChange, pageChange, mainSelected, mainSelectionChange, serviceEnum, currtRow } = Mixins(get)
@@ -108,10 +110,10 @@ async function get() {
 }
 init()
 /** 抽屉相关 开始 */
-let dialog = ref(false)
+let dialog = computed(() => route.name === '用户详情')
 function backEditTask(val: boolean) {
-	dialog.value = false
 	if (val) {
+		router.back()
 		ElNotification({
 			type: 'success',
 			title: '点击了确定',
@@ -126,7 +128,8 @@ function backEditTask(val: boolean) {
 function setCurrtRow(row: any, type: string) {
 	if (type === 'edit') {
 		currtRow.value = row
-		dialog.value = true
+		router.push(`/datasource/${row.id}`)
+		// dialog.value = true
 	} else {
 		ElMessage.success(`${row.name}已删除！`)
 	}

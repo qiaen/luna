@@ -57,12 +57,15 @@ router.beforeEach(async (to, from) => {
 })
 /** 每次路由变动后：可以做页面分析等 */
 router.afterEach((to: any) => {
-	// 切换选中的tab，请查看layout/tabs.vue
-	Layout.SetCurrentTab({
-		label: to.name,
-		path: to.path,
-		icon: to.meta?.icon
-	})
+	/** 切换选中的tab，请查看layout/tabs.vue */
+	if (to.meta.menu !== false) {
+		Layout.SetCurrentTab({
+			label: to.name,
+			path: to.path,
+			icon: to.meta?.icon
+		})
+	}
+
 	let doc: any = document
 	doc.title = to.name ? `${to.name} - ${title}` : `${title} - 后台管理系统模版Vue3+TS`
 	/** 隐藏首次进入的loading */
