@@ -4,8 +4,8 @@
 			<a :style="{ width: isCollapse ? '42px' : '' }" class="fxmiddle flex hideit height100">
 				<img src="/img/dt-7.png" />
 				<div class="pl5">
-					<p class="fbold fsize14">花木兰</p>
-					<p class="fsize11">后台管理系统模版Vue3+TS</p>
+					<p class="fbold fsize14">{{ $t('花木兰') }}</p>
+					<p class="fsize11">{{ $t('后台管理系统模版Vue3+TS') }}</p>
 				</div>
 			</a>
 		</div>
@@ -37,6 +37,7 @@
 </template>
 <script lang="ts" setup>
 import { isCollapse, menus, defaultOpeneds, currentTab } from '@/store/Layout'
+import { $t } from '@/configs/language'
 </script>
 <style lang="scss">
 .menus {

@@ -14,6 +14,7 @@ AxIns.interceptors.request.use(
 	(config: any) => {
 		// 统一为请求接口增加token信息
 		// 注意实际业务用到的method可能更复杂，这里需要增加逻辑判断
+		config.headers['Accept-Language'] = Storage.get('Language')
 		if (config.method === 'get') {
 			config.params = { ...(config.params || {}), token: Storage.get('token') }
 		} else {

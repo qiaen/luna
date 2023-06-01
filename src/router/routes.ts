@@ -1,11 +1,12 @@
+import { $t } from '@/configs/language'
 /** 注意，name要和组件内的name一致，用于路由缓存识别！！！ */ 
 export default [
 	{
 		path: '/',
-		name: '首页',
+		name: $t('首页'),
 		component: () => import('@/views/layout/index.vue'),
 		meta: {
-			title: '首页'
+			title: $t('首页')
 		},
 		children: [
 			{

@@ -5,12 +5,26 @@ const dict: any = {
 	},
 	JOB_TYPE: [
 		{
-			name:'入库单',
+			name: '入库单',
 			value: 1
 		},
 		{
-			name:'出库单',
+			name: '出库单',
 			value: 2
+		}
+	],
+	Languages: [
+		{
+			value: 'zh',
+			name: '中文 (简体)'
+		},
+		{
+			value: 'en',
+			name: 'English'
+		},
+		{
+			value: 'zhtw',
+			name: '中文 (繁体)'
 		}
 	]
 }

@@ -1,6 +1,7 @@
 import Storage from '@/utils/Storage'
 import { CurrentTab } from './interface'
 import { Ref } from 'vue'
+import { ResetRoute } from '@/router/index'
 /** 首次进入的loading */
 export let loading = ref(true)
 /** 隐藏loading */
@@ -84,6 +85,16 @@ export function CloseTabs(type: string) {
 
 /** 主题色 */
 export let isDark = ref(localStorage.HML_isDark ? '1' : '0')
+/** 主题变动 */
 export function SetTheme() {
 	isDark.value = isDark.value == '1' ? '0' : '1'
+}
+/** 用户语言 */
+let l = Storage.get('Language')
+export let language = ref(l ? l : 'zh')
+/** 语言变动 */
+export function SetLanguage(v: any) {
+	language.value = v
+	ResetRoute()
+	Storage.set('Language', v)
 }

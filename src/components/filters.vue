@@ -12,7 +12,7 @@
 						{{ btnConf.label }}
 						<el-icon class="pl5"><component :is="btnConf.icon"></component></el-icon>
 					</el-button>
-					<el-button type="primary" plain @click="rest(refForm)" :icon="Refresh">重置</el-button>
+					<el-button type="primary" plain @click="rest(refForm)" :icon="Refresh">{{ $t('重置') }}</el-button>
 					<!-- 按钮区域 -->
 					<slot name="button"></slot>
 				</el-form-item>
@@ -26,7 +26,7 @@ import { ArrowUp, ArrowDown, Refresh } from '@element-plus/icons-vue'
 import { FormInstance } from 'element-plus'
 import Storage from '@/utils/Storage'
 import { isCollapse } from '@/store/Layout'
-
+import { $t } from '@/configs/language'
 defineProps({
 	/** 尺寸大小 */
 	size: { default: '' },
@@ -125,13 +125,13 @@ let btnConf = computed(() => {
 	if (showall.value) {
 		return {
 			icon: ArrowUp,
-			label: '收起',
+			label: $t('收起'),
 			show
 		}
 	} else {
 		return {
 			icon: ArrowDown,
-			label: '展开',
+			label: $t('展开'),
 			show
 		}
 	}

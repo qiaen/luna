@@ -9,7 +9,7 @@ export let serviceEnum: any = ref({ ...localEnums, ...(Storage.get('AllEnums') |
 async function Qe() {
 	let [data]: DictResponse[][] = await Base.getAllEnum()
 	if (data) {
-		let n = {}
+		let n: any = {}
 		if (data) {
 			data.forEach(item => {
 				n[item.type] = (item.dictList || []).map(({ name, code }) => ({ name, code }))

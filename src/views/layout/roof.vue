@@ -4,7 +4,7 @@
 		<div class="flex1 hideit fxmiddle bread">
 			<i @click="SetMenuCollapse" :style="{ transform: `rotate(${isCollapse ? 0 : 180}deg)` }" class="iconfont icon-zhankai middle fsize18 pointer"></i>
 			<el-breadcrumb separator="/">
-				<el-breadcrumb-item to="/">首页</el-breadcrumb-item>
+				<el-breadcrumb-item to="/">{{ $t('首页') }}</el-breadcrumb-item>
 				<el-breadcrumb-item v-for="(item, index) in breadcrumb" :key="index">
 					<router-link :to="item.path">{{ item.name }}</router-link>
 				</el-breadcrumb-item>
@@ -44,6 +44,7 @@
 <script lang="ts" setup>
 import { userInfo, Logout } from '@/store/Auth'
 import { SetMenuCollapse, isCollapse } from '@/store/Layout'
+import { $t } from '@/configs/language'
 import Sets from './sets.vue'
 const route: any = useRoute()
 function change(val: string | void) {
