@@ -21,7 +21,7 @@
 			</ul>
 			<h3>花木兰模版</h3>
 			<ul class="json-ul">
-				<li><strong>特色：</strong>element ui自动化动态导入，setup语法糖支持name</li>
+				<li><strong>特色：</strong>element ui自动化动态导入，setup语法糖支持name，新增多国家语言</li>
 				<li><strong>动态菜单：</strong>在服务端配置菜单路由，以及菜单指定的页面文件</li>
 				<li><strong>菜单权限：</strong>可以给不同用户指定不同的菜单，菜单权限，使用路由守卫在跳转时校验权限提示404或者403</li>
 				<li><strong>按钮权限：</strong>服务器对于不同的功能，给出不同的权限码，前端通过v-permission指令搞定是否有权限</li>
