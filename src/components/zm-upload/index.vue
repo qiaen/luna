@@ -27,7 +27,7 @@
 					<!-- 删除，有id的，提示一下 -->
 					<el-popconfirm :disabled="loading" v-if="!disabled" title="确认删除吗？" @confirm="delFile(index, item)">
 						<template #reference>
-							<i class="iconfont icon-shanchu pointer pl5 fc333 fnormal"></i>
+							<i class="iconfont icon-shanchu pointer pl5 fc666 fnormal"></i>
 						</template>
 					</el-popconfirm>
 				</div>

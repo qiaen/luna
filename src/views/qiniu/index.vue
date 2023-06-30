@@ -101,14 +101,14 @@ function print(vals: any) {
 		display: flex;
 		align-items: baseline;
 		width: 33.333%;
-		border-left: 1px solid #ebebeb;
+		border-left: 1px solid var(--border-color-grey);
 		font-size: 14px;
 		padding: 10px;
-		color: #333;
+		color: var(--el-text-color-regular);
 		.label {
 			font-weight: 400;
 			padding-right: 12px;
-			color: #666;
+			color: var(--text-color-grey);
 		}
 		.span {
 			flex: 1;
