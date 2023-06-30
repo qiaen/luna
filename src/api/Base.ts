@@ -16,5 +16,5 @@ export const messageIsSilent = () => Http.ask('GET', `/ntApi/xxxx`, {}, { header
 export const getUserInfo = (params?: any) => Http.ask(`GET`, `/getUserInfo`, params)
 /** 获取所有枚举接口 */
 export const getAllEnum = (params?: any) => Http.ask(`GET`, `/getAllEnum`, params)
-/** 退出登录 */
-export const logout = (token?: string) => Http.ask('GET', `/fbs-app/loginManage/logout?token=${token}`)
+/** 获取七牛token */
+export const getBucket = () => Http.ask('GET', '/getBucket')

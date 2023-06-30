@@ -13,5 +13,7 @@ declare global {
 		LN_needAuth: boolean
 		/** 设置主题 */
 		setTheme: Function
+		/** 七牛上传 */
+		qiniu: any
 	}
 }

@@ -20,11 +20,18 @@ export default defineConfig({
 		host: process.env.HOST,
 		open: false,
 		proxy: {
-			// 项目接口
+			/** 项目接口 */
 			'/api': {
 				target: base.target,
 				changeOrigin: true,
 				rewrite: path => path.replace(/^\/api/, '/api'),
+				cookieDomainRewrite: ''
+			},
+			/** 文件 */
+			'/file': {
+				target: base.target,
+				changeOrigin: true,
+				rewrite: path => path.replace(/^\/api/, '/file'),
 				cookieDomainRewrite: ''
 			}
 		}
