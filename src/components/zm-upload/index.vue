@@ -126,7 +126,7 @@ watch(
 
 /** 预览 */
 function preview(row: any) {
-	let url = row.url
+	let url = row.url ? `${location.origin}${row.url}` : ''
 	if (!url) {
 		return ElMessage.error('文件信息缺失，无法预览~')
 	}

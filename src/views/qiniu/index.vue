@@ -1,6 +1,8 @@
 <template>
 	<section>
-		<sline title="七牛文件上传" size="big"></sline>
+		<sline title="七牛文件上传" size="big">
+			<template v-slot:descript><a class="fsize12 fcorg" target="_blank" href="https://s.qiniu.com/b2mM3e">https://s.qiniu.com/b2mM3e</a></template>
+		</sline>
 		<ul class="list list-2 pt20">
 			<li>
 				<label class="label">限制一个文件（可编辑）</label>
