@@ -41,12 +41,12 @@
 			.cell {
 				&::before {
 					content: '';
-					float: right;
-					margin-top: 10px;
-					transform: translate(10px, 0);
 					width: 0;
 					height: 18px;
 					border-right: 1px dashed #999;
+                    position: absolute;
+                    right: 0;
+                    top: 10px;
 				}
 			}
 			// 去除最后一个的边线
