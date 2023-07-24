@@ -5,8 +5,6 @@
     </section>
 </template>
 <script lang="ts" setup name="/">
-import { onMounted, ref } from 'vue'
-// let name = ref('hello')
 /** 可以获取dom, data也已经渲染到html */
 onMounted(() => {
     console.log('hello, dashboard 2~~~')
