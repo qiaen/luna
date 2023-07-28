@@ -12,6 +12,11 @@
 		<div>
 			<el-button @click="changeAA">测试es6 导入的变量是否能够修改</el-button>
 		</div>
+        <ul>
+            <template v-for="item in list" :key="item">
+                <li v-if="item !== 2">{{ item }}</li>
+            </template>
+        </ul>
 	</section>
 </template>
 <script lang="ts" setup>
@@ -19,6 +24,8 @@ import inp from './inp.vue'
 import Hub from './hub'
 import test3 from '../daily/test-vue3.vue'
 import { aa } from './es6'
+let list: number[] = reactive([2, 3, 4, 5, 6, 7])
+
 function changeAA() {
 	console.log(aa)
 	// console.log(test3.render())
