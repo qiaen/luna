@@ -3,8 +3,10 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
-		"build": "vite build",
+		"dev": "vite --mode development --force",
+		"pro": "vite --mode production --force",
+		"build:dev": "vite build --mode development --force",
+		"build:pro": "vite build --mode production --force",
 		"preview": "vite preview --port 5050",
 		"typecheck": "vue-tsc --noEmit"
 	},
