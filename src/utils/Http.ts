@@ -6,13 +6,12 @@ type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
  *  当code == 200 时，返回的是后端的data，
  *  正常情况这个data是有值，如果的确没有data，只用data判断会有误，所以这时候用返回的第二个全量response做判断即可
  */
-type ResponseData = any
 /** 后端接口返回的信息 */
-interface Response {
+interface Response<T> {
 	/** 后端 状态码 */
 	code: number
 	/** 后端返回的实际数据 */
-	data?: ResponseData
+	data: T
 	/** 信息，成功 / 错误提示语 */
 	message: string,
 	total?: number
@@ -22,16 +21,23 @@ interface Response {
  * { responseType: 'blob', headers : { headerInfo: 'hello word' } } */
 
 export default class Http {
-	static ask(method: Method, url: string, data?: any, others: object = {}): Promise<[ResponseData, Response]> {
+	static ask<T>(method: Method, url: string, data?: any, others: object = {}): Promise<[T, {
+		code: number
+		/** 后端返回的实际数据 */
+		data: T
+		/** 信息，成功 / 错误提示语 */
+		message: string,
+		total?: number
+	}]> {
 		const payload = ['GET'].includes(method) ? 'params' : 'data'
 		return axios({
 			method,
 			url,
 			[payload]: data,
 			...others
-		}).then((res: any = { data: '' }) => {
+		}).then((res: { data: Response<T>}) => {
 			/** 这里的res.data是接口返回的实际数据 */
-			let { code, data }: Response = res.data
+			let { code, data } = res.data
 			/** 若业务代码内每次都判断code稍显麻烦，所以这里针对code为200，解构返回后端的data，同事保留第2个参数为全量的response信息 */
 			return [code === 200 ? data : false, res.data]
 		}).catch((err: any) => {

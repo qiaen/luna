@@ -2,6 +2,7 @@ import Storage from '@/utils/Storage'
 import { CurrentTab } from './interface'
 import { Ref } from 'vue'
 import { ResetRoute } from '@/router/index'
+import { MenuType } from '@/api/Base'
 /** 首次进入的loading */
 export let loading = ref(true)
 /** 隐藏loading */
@@ -10,9 +11,9 @@ export function hideLoading() {
 }
 
 /** 用户所有的菜单 */
-export let menus: Ref<any[]> = ref([])
+export let menus: Ref<MenuType[]> = ref([])
 /** 修改项目菜单 */
-export function SetMenus(ms: any) {
+export function SetMenus(ms: MenuType[]) {
 	menus.value = ms
 }
 
@@ -24,18 +25,18 @@ export function SetMenuCollapse() {
 	Storage.set('DSMenuCollapse', isCollapse.value ? 1 : '')
 }
 
-/** 已打开的tab菜单, [{key:value}] */
+/** 已打开的tab菜单 */
 export let menuTabs = ref([{ path: '/', label: 'Dashboard', icon: 'iconfont icon-dashboard' }])
 /* 缓存的页面地址 */
 export let cachedViews = ref(['/'])
 /**当前需要展开的菜单, [value] */
-export let defaultOpeneds: Ref<any[]> = ref([])
+export let defaultOpeneds: Ref<string[]> = ref([])
 /** 当前选中的tab */
 export let currentTab: Ref<CurrentTab> = ref({ path: '', label: '' })
 /** 设定选中的tab */
-export function SetCurrentTab(tab: any) {
+export function SetCurrentTab(tab: MenuType) {
 	/** 在打开的tabs内找当前要选中的tab */
-	let currt = menuTabs.value.find((item: any) => {
+	let currt = menuTabs.value.find(item => {
 		return item.path === tab.path
 	})
 	if (!currt) {
@@ -50,7 +51,7 @@ export function SetCurrentTab(tab: any) {
 	if (isCollapse.value) {
 		for (let item of menus.value) {
 			if (item.child && item.child.length) {
-				if (item.child.some((m: any) => m.path === tab.path)) {
+				if (item.child.some(m => m.path === tab.path)) {
 					defaultOpeneds.value = [item.path]
 					break
 				}
@@ -59,7 +60,7 @@ export function SetCurrentTab(tab: any) {
 	}
 }
 /** 删除一个tab */
-export function RemoveTab(tab: any) {
+export function RemoveTab(tab: MenuType) {
 	// tabs只有一个时不能删除/
 	if (tab.path === '/' && menuTabs.value.length <= 1) {
 		return Promise.reject('tabs只有一个时不能删除/')
@@ -77,7 +78,7 @@ export function CloseTabs(type: string) {
 		cachedViews.value = []
 	}
 	if (type === 'others') {
-		menuTabs.value = menuTabs.value.filter((item: any) => item.path === currentTab.value.path)
+		menuTabs.value = menuTabs.value.filter(item => item.path === currentTab.value.path)
 		cachedViews.value = [currentTab.value.path]
 	}
 	return Promise.resolve()
@@ -93,7 +94,7 @@ export function SetTheme() {
 let l = Storage.get('Language')
 export let language = ref(l ? l : 'zh')
 /** 语言变动 */
-export function SetLanguage(v: any) {
+export function SetLanguage(v: string) {
 	language.value = v
 	ResetRoute()
 	Storage.set('Language', v)

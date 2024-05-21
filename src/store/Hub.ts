@@ -2,12 +2,11 @@ import * as Base from '@/api/Base'
 import localEnums from '@/configs/enums'
 import Storage from '@/utils/Storage'
 
-import { DictResponse } from './interface'
 /** 全局字典，服务器获取 */
 export let serviceEnum: any = ref({ ...localEnums, ...(Storage.get('AllEnums') || {}) })
 /** 获取字典接口 */
 async function Qe() {
-	let [data]: DictResponse[][] = await Base.getAllEnum()
+	let [data] = await Base.getAllEnum()
 	if (data) {
 		let n: any = {}
 		if (data) {

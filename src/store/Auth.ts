@@ -4,7 +4,7 @@ import Storage from '@/utils/Storage'
 export let userInfo: any = ref({})
 /** 用户角色 */
 /** 用户权限码 */
-export let permission: any = ref([])
+export let permission = ref<string[]>([])
 /** 获取用户信息 */
 export async function GetUserInfo() {
 	let [data] = await Base.getUserInfo()

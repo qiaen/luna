@@ -1,4 +1,5 @@
 import Http from '@/utils/Http'
+import { DictResponse } from '@/store/interface'
 /** 示例1----------
  * 根据文件url下载文件，公用
  *- url：文件路径，必须
@@ -12,9 +13,22 @@ import Http from '@/utils/Http'
 /** 示例2 ---------
  * 此接口配置了feSilent，所以不会弹出默认样式的错误消息通知，而是直接返回所有的response，前端有更大的开发空间 */
 export const messageIsSilent = () => Http.ask('GET', `/ntApi/xxxx`, {}, { headers: { feSilent: true } })
+export type MenuType = {
+	children: MenuType[]
+	hideInmenu: boolean
+	name: string
+	icon: string
+	child: MenuType[]
+	path: string
+	label: string
+}
+export type BaseType = {
+	permission: string[]
+	menus: MenuType[]
+}
 /** 获取用户信息 */
-export const getUserInfo = (params?: any) => Http.ask(`GET`, `/getUserInfo`, params)
+export const getUserInfo = (params?: any) => Http.ask<BaseType>(`GET`, `/getUserInfo`, params)
 /** 获取所有枚举接口 */
-export const getAllEnum = (params?: any) => Http.ask(`GET`, `/getAllEnum`, params)
+export const getAllEnum = (params?: any) => Http.ask<DictResponse[]>(`GET`, `/getAllEnum`, params)
 /** 获取七牛token */
 export const getBucket = () => Http.ask('GET', '/getBucket')
