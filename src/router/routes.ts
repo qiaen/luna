@@ -54,5 +54,13 @@ export default [
 		meta: {
 			title: 'login'
 		}
+	},
+	{
+		path: '/test',
+		name: '测试',
+		component: () => import(`@/views/test/index.vue`),
+		meta: {
+			title: '测试'
+		}
 	}
 ]

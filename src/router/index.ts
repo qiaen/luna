@@ -10,7 +10,7 @@ import { Auth, Layout } from '@/store'
 const title = $t(import.meta.env.VITE_TITLE)
 
 /** 免登陆可进入的页面(白名单) */
-const whiteList = ['/login', '/403', '/404']
+const whiteList = ['/login', '/403', '/404', '/test']
 
 window.LN_needAuth = true
 const router = createRouter({

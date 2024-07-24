@@ -17,13 +17,23 @@
                 <li v-if="item !== 2">{{ item }}</li>
             </template>
         </ul>
+		<computedSetGet v-model="csg" />
+		{{ csg }}
+		<myUseVModel  v-model="csg.value" />
+		<myUseStorage />
 	</section>
 </template>
 <script lang="ts" setup>
 import inp from './inp.vue'
 import Hub from './hub'
 import test3 from '../daily/test-vue3.vue'
+import computedSetGet from './computedSetGet.vue'
+import myUseVModel from './useVModel.vue'
+import myUseStorage from './useStorage.vue'
 import { aa } from './es6'
+let csg = ref({
+	value:'shanghai'
+})
 let list: number[] = reactive([2, 3, 4, 5, 6, 7])
 
 function changeAA() {
